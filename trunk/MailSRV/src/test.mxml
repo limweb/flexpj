@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   > 
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import spark.events.GridSelectionEvent;
+			
+			
+		]]>
+	</fx:Script>
+	<mx:AdvancedDataGrid id="mainDtg" width="100%" height="100%" 
+						 horizontalScrollPolicy="on" lockedColumnCount="6" sortExpertMode="false">
+		<mx:groupedColumns>
+			<mx:AdvancedDataGridColumn id="chkBox" width="17" textAlign="center">
+				<mx:itemRenderer>
+					<fx:Component>
+						<mx:CheckBox/>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:AdvancedDataGridColumn>
+			<mx:AdvancedDataGridColumn id="info" width="17" textAlign="center">
+				<mx:itemRenderer>
+					<fx:Component>
+						<mx:Image width="15" height="15" buttonMode="true" source="images/info.jpg"/>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:AdvancedDataGridColumn>
+			<mx:AdvancedDataGridColumn id="edit" width="17" textAlign="center">
+				<mx:itemRenderer>
+					<fx:Component>
+						<mx:Image width="10" height="10" buttonMode="true" source="images/edit.png"/>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:AdvancedDataGridColumn>
+			<mx:AdvancedDataGridColumn id="cancle" width="17" textAlign="center">
+				<mx:itemRenderer>
+					<fx:Component>
+						<mx:Image width="10" height="10" buttonMode="true" source="images/delete.png"/>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:AdvancedDataGridColumn>
+			<mx:AdvancedDataGridColumn width="120" dataField="userName" headerText="User Name"
+									   textAlign="center"/>
+			<mx:AdvancedDataGridColumnGroup headerText="Identification">
+				<mx:AdvancedDataGridColumn width="170" dataField="fullName" headerText="Full Name"
+										   textAlign="center"/>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<Authority___________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpPrivilledge" headerText="Privilledge">
+				<mx:AdvancedDataGridColumn width="100" dataField="userType" headerText="User Type"
+										   textAlign="center"/>
+			</mx:AdvancedDataGridColumnGroup>
+			<mx:AdvancedDataGridColumnGroup id="grpAuthentication" headerText="Authentication">
+				<mx:AdvancedDataGridColumn width="170" headerText="Authenticate via LDAP"
+										   textAlign="center">
+					<mx:itemRenderer>
+						<fx:Component>
+							<mx:CheckBox/>
+						</fx:Component>
+					</mx:itemRenderer>	
+				</mx:AdvancedDataGridColumn>
+				<mx:AdvancedDataGridColumn width="150" headerText="Password" textAlign="center">
+					<mx:itemRenderer>
+						<fx:Component>
+							<mx:TextInput displayAsPassword="true" editable="false" text="password"/>
+						</fx:Component>
+					</mx:itemRenderer>
+				</mx:AdvancedDataGridColumn>
+			</mx:AdvancedDataGridColumnGroup>
+			<mx:AdvancedDataGridColumnGroup id="grpLanguage" headerText="Language">
+				<mx:AdvancedDataGridColumn width="170" dataField="language"
+										   headerText="Language for Orion UI" textAlign="center"/>
+			</mx:AdvancedDataGridColumnGroup>
+			<mx:AdvancedDataGridColumnGroup id="grpImpairment" headerText="Impairment">
+				<mx:AdvancedDataGridColumn width="90" headerText="Hearing" textAlign="center">
+					<mx:itemRenderer>
+						<fx:Component>
+							<mx:CheckBox/>
+						</fx:Component>
+					</mx:itemRenderer>	
+				</mx:AdvancedDataGridColumn>
+				<mx:AdvancedDataGridColumn width="90" headerText="Vision" textAlign="center">
+					<mx:itemRenderer>
+						<fx:Component>
+							<mx:CheckBox/>
+						</fx:Component>
+					</mx:itemRenderer>	
+				</mx:AdvancedDataGridColumn>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--< END : Authority___________________________________________________>-->
+			
+			<!--<Contact_______________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpLocation" headerText="Location">
+				<mx:AdvancedDataGridColumn width="200" dataField="dptPlace"
+										   headerText="Department or Place" textAlign="center"/>
+				<mx:AdvancedDataGridColumn width="200" dataField="country" headerText="Country"
+										   textAlign="center"/>
+			</mx:AdvancedDataGridColumnGroup>
+			<mx:AdvancedDataGridColumnGroup id="grpContact" headerText="Contact">
+				<mx:AdvancedDataGridColumn width="300" dataField="email" headerText="Email Address"/>
+				<mx:AdvancedDataGridColumn width="170" dataField="phone" headerText="Phone Number"/>
+				<mx:AdvancedDataGridColumn width="170" dataField="phoneType" headerText="Phone Type"/>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<END : Contact____________________________________________________________>-->
+			
+			<!--<App security Explorer_______________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpAppExplorer"
+											headerText="Application Security for Orion Explorer and Windows integration (1 of 2)">
+				<mx:AdvancedDataGridColumnGroup headerText="Full text search">
+					<mx:AdvancedDataGridColumn width="90" headerText="Explorer" textAlign="center">
+						<mx:itemRenderer>
+							<fx:Component>
+								<mx:CheckBox/>
+							</fx:Component>
+						</mx:itemRenderer>	
+					</mx:AdvancedDataGridColumn>
+					<mx:AdvancedDataGridColumn width="90" headerText="Windows" textAlign="center">
+						<mx:itemRenderer>
+							<fx:Component>
+								<mx:CheckBox/>
+							</fx:Component>
+						</mx:itemRenderer>	
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				
+				<mx:AdvancedDataGridColumnGroup headerText="Create public search profiles">
+					<mx:AdvancedDataGridColumn width="200" headerText="Explorer" textAlign="center">
+						<mx:itemRenderer>
+							<fx:Component>
+								<mx:CheckBox/>
+							</fx:Component>
+						</mx:itemRenderer>	
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="Delete public search profiles">
+					<mx:AdvancedDataGridColumn width="200" headerText="Explorer" textAlign="center">
+						<mx:itemRenderer>
+							<fx:Component>
+								<mx:CheckBox/>
+							</fx:Component>
+						</mx:itemRenderer>	
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="Check-in/check-out">
+					<mx:AdvancedDataGridColumn width="90" headerText="Explorer" textAlign="center">
+						<mx:itemRenderer>
+							<fx:Component>
+								<mx:CheckBox/>
+							</fx:Component>
+						</mx:itemRenderer>	
+					</mx:AdvancedDataGridColumn>
+					<mx:AdvancedDataGridColumn width="90" headerText="Windows" textAlign="center">
+						<mx:itemRenderer>
+							<fx:Component>
+								<mx:CheckBox/>
+							</fx:Component>
+						</mx:itemRenderer>	
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="Archive new documents">
+					<mx:AdvancedDataGridColumn width="90" headerText="Explorer" textAlign="center">
+						<mx:itemRenderer>
+							<fx:Component>
+								<mx:CheckBox/>
+							</fx:Component>
+						</mx:itemRenderer>	
+					</mx:AdvancedDataGridColumn>
+					<mx:AdvancedDataGridColumn width="90" headerText="Windows" textAlign="center">
+						<mx:itemRenderer>
+							<fx:Component>
+								<mx:CheckBox/>
+							</fx:Component>
+						</mx:itemRenderer>	
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<END : App security Explorer_______________________________________________________>-->
+			
+			<!--<App security Explorer 2_______________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpAppWindows"
+											headerText="Application Security for Orion Explorer and Windows integration (2 of 2)">
+				<mx:AdvancedDataGridColumnGroup headerText="Reindex archived documents">
+					<mx:AdvancedDataGridColumn width="110" headerText="Explorer" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+					<mx:AdvancedDataGridColumn width="110" headerText="Windows" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="Save archived docs to disk">
+					<mx:AdvancedDataGridColumn width="95" headerText="Explorer" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+					<mx:AdvancedDataGridColumn width="95" headerText="Windows" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="Email archived documents">
+					<mx:AdvancedDataGridColumn width="95" headerText="Explorer" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+					<mx:AdvancedDataGridColumn width="95" headerText="Windows" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="Print archived documents">
+					<mx:AdvancedDataGridColumn width="95" headerText="Explorer" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+					<mx:AdvancedDataGridColumn width="95" headerText="Windows" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="Delete archived documents">
+					<mx:AdvancedDataGridColumn width="95" headerText="Explorer" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+					<mx:AdvancedDataGridColumn width="95" headerText="Windows" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<END : App security Explorer 2_______________________________________________________>-->
+			
+			<!--<App security workflow_______________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpAppWorkflow"
+											headerText="Application security for workflow">
+				<mx:AdvancedDataGridColumn width="200" headerText="Enabled personal workbox"
+										   headerWordWrap="true" textAlign="center">
+				</mx:AdvancedDataGridColumn>
+				<mx:AdvancedDataGridColumn width="180"
+										   headerText="Start new workflow cases for socuments"
+										   headerWordWrap="true" textAlign="center">
+				</mx:AdvancedDataGridColumn>
+				<mx:AdvancedDataGridColumn width="180"
+										   headerText="Attach documents to existing workflow cases"
+										   headerWordWrap="true" textAlign="center">
+				</mx:AdvancedDataGridColumn>
+				<mx:AdvancedDataGridColumn width="180"
+										   headerText="Interact with document processing steps"
+										   headerWordWrap="true" textAlign="center">
+				</mx:AdvancedDataGridColumn>
+				<mx:AdvancedDataGridColumn width="180"
+										   headerText="Interact with business processing steps"
+										   headerWordWrap="true" textAlign="center">
+				</mx:AdvancedDataGridColumn>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<END : App security workflow_______________________________________________________>-->
+			
+			<!--<App security other_______________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpAppOther"
+											headerText="Application security for other">
+				<mx:AdvancedDataGridColumnGroup headerText="DejaVu">
+					<mx:AdvancedDataGridColumn width="400"
+											   headerText="Enable advanced DejaVu configuration"
+											   headerWordWrap="true" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+				<mx:AdvancedDataGridColumnGroup headerText="Windows">
+					<mx:AdvancedDataGridColumn width="400" headerText="Allow use of Wizards"
+											   headerWordWrap="true" textAlign="center">
+					</mx:AdvancedDataGridColumn>
+				</mx:AdvancedDataGridColumnGroup>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<END : App security other_______________________________________________________>-->
+			
+			<!--<Groups/Roles_______________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpGroups" headerText="Groups">
+				<mx:AdvancedDataGridColumn width="400" headerText="Groups of which Users are members"
+										   headerWordWrap="true" textAlign="center">
+				</mx:AdvancedDataGridColumn>
+			</mx:AdvancedDataGridColumnGroup>
+			<mx:AdvancedDataGridColumnGroup id="grpRoles" headerText="Roles">
+				<mx:AdvancedDataGridColumn width="400" headerText="Roles of which Users are members"
+										   headerWordWrap="true" textAlign="center">
+				</mx:AdvancedDataGridColumn>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<END : Groups/Roles_______________________________________________________>-->
+			
+			<!--<Absebtee User_______________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpAbsenteeUser" headerText="Absentee Users">
+				<mx:AdvancedDataGridColumn width="600" dataField="absences"
+										   headerText="Covered absences" headerWordWrap="true"
+										   textAlign="center"/>
+				<mx:AdvancedDataGridColumn width="100" dataField="strDate" headerText="Start Date"
+										   headerWordWrap="true" textAlign="center"/>
+				<mx:AdvancedDataGridColumn width="100" dataField="endDate" headerText="Ending Date"
+										   headerWordWrap="true" textAlign="center"/>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<END : Absebtee User_______________________________________________________>-->
+			
+			<!--<Master User_______________________________________________________>-->
+			<mx:AdvancedDataGridColumnGroup id="grpMasterUser" headerText="Master Users">
+				<mx:AdvancedDataGridColumn width="600" dataField="masterSub"
+										   headerText="Masters and Subjects" headerWordWrap="true"
+										   textAlign="center"/>
+			</mx:AdvancedDataGridColumnGroup>
+			<!--<END : Absebtee User_______________________________________________________>-->
+			
+		</mx:groupedColumns>
+	</mx:AdvancedDataGrid>
+
+</s:Application>

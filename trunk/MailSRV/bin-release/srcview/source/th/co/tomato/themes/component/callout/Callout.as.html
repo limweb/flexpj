@@ -1,0 +1,737 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Callout.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//  ADOBE SYSTEMS INCORPORATED
+</span><span class="ActionScriptComment">//  Copyright 2011 Adobe Systems Incorporated
+</span><span class="ActionScriptComment">//  All Rights Reserved.
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//  NOTICE: Adobe permits you to use, modify, and distribute this file
+</span><span class="ActionScriptComment">//  in accordance with the terms of the license agreement accompanying it.
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span>
+<span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">th</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">co</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">tomato</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">themes</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">component</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">callout</span>
+<span class="ActionScriptBracket/Brace">{</span>
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">display</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DisplayObject</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">display</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DisplayObjectContainer</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">geom</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ColorTransform</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">geom</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Matrix</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">geom</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Point</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">geom</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Rectangle</span>;
+
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DPIClassification</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FlexGlobals</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ILayoutElement</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IVisualElement</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LayoutDirection</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UIComponent</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mx_internal</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ResizeEvent</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">managers</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SystemManager</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">MatrixUtil</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PopUpUtil</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SkinnablePopUpContainer</span>;
+
+<span class="ActionScriptReserved">use</span> <span class="ActionScriptReserved">namespace</span> <span class="ActionScriptDefault_Text">mx_internal</span>;
+
+<span class="ActionScriptComment">//--------------------------------------
+</span><span class="ActionScriptComment">//  Styles
+</span><span class="ActionScriptComment">//--------------------------------------
+</span>
+<span class="ActionScriptASDoc">/**
+ *  Appearance of the &lt;code&gt;contentGroup&lt;/code&gt;. 
+ *  Valid MXML values are &lt;code&gt;inset&lt;/code&gt;, 
+ *  &lt;code&gt;flat&lt;/code&gt;, and &lt;code&gt;none&lt;/code&gt;.
+ *
+ *  &lt;p&gt;In ActionScript, you can use the following constants
+ *  to set this property:
+ *  &lt;code&gt;ContentBackgroundAppearance.INSET&lt;/code&gt;,
+ *  &lt;code&gt;ContentBackgroundAppearance.FLAT&lt;/code&gt; and
+ *  &lt;code&gt;ContentBackgroundAppearance.NONE&lt;/code&gt;.&lt;/p&gt;
+ *
+ *  @default ContentBackgroundAppearance.INSET
+ *  
+ *  @langversion 3.0
+ *  @playerversion AIR 3
+ *  @productversion Flex 4.6
+ */</span> 
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"contentBackgroundAppearance"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"String"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"inset,flat,none"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptComment">//--------------------------------------
+</span><span class="ActionScriptComment">//  Other metadata
+</span><span class="ActionScriptComment">//--------------------------------------
+</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">IconFile</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"Callout.png"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  The Callout container is a SkinnablePopUpContainer that functions as a pop-up
+ *  with additional owner-relative positioning options similar to PopUpAnchor.
+ *  Callout also adds an optional &lt;code&gt;arrow&lt;/code&gt; skin part that visually
+ *  displays the direction toward the owner.
+ *
+ *  &lt;p&gt;The following image shows a Callout container labeled 'Settings':&lt;/p&gt;
+ *
+ * &lt;p&gt;
+ *  &lt;img src="../../images/ca_calloutViewNav_ca.png" alt="Callout container" /&gt;
+ * &lt;/p&gt;
+ *
+ *  &lt;p&gt;You can also use the CalloutButton control to open a callout container. 
+ *  The CalloutButton control encapsulates in a single control the callout container 
+ *  and all of the logic necessary to open and close the callout. 
+ *  The CalloutButton control is then said to the be the owner, or host, 
+ *  of the callout.&lt;/p&gt;
+ *
+ *  &lt;p&gt;Callout uses the &lt;code&gt;horizontalPosition&lt;/code&gt; and
+ *  &lt;code&gt;verticalPosition&lt;/code&gt; properties to determine the position of the
+ *  Callout relative to the owner that is specified by the &lt;code&gt;open()&lt;/code&gt;
+ *  method. 
+ *  Both properties can be set to &lt;code&gt;CalloutPosition.AUTO&lt;/code&gt; which selects a
+ *  position based on the aspect ratio of the screen for the Callout to fit
+ *  with minimal overlap with the owner and and minimal adjustments at the
+ *  screen bounds.&lt;/p&gt;
+ *
+ *  &lt;p&gt;Once positioned, the Callout positions the arrow on the side adjacent
+ *  to the owner, centered as close as possible on the horizontal or vertical
+ *  center of the owner as appropriate. The arrow is hidden in cases where
+ *  the Callout position is not adjacent to any edge.&lt;/p&gt;
+ *
+ *  &lt;p&gt;You do not create a Callout container as part of the normal layout
+ *  of its parent container.
+ *  Instead, it appears as a pop-up container on top of its parent.
+ *  Therefore, you do not create it directly in the MXML code of your application.&lt;/p&gt;
+ *
+ *  &lt;p&gt;Instead, you create is as an MXML component, often in a separate MXML file.
+ *  To show the component create an instance of the MXML component, and
+ *  then call the &lt;code&gt;open()&lt;/code&gt; method.
+ *  You can also set the size and position of the component when you open it.&lt;/p&gt;
+ *
+ *  &lt;p&gt;To close the component, call the &lt;code&gt;close()&lt;/code&gt; method.
+ *  If the pop-up needs to return data to a handler, you can add an event listener for
+ *  the &lt;code&gt;PopUp.CLOSE&lt;/code&gt; event, and specify the returned data in
+ *  the &lt;code&gt;close()&lt;/code&gt; method.&lt;/p&gt;
+ *
+ *  &lt;p&gt;The Callout is initially in its &lt;code&gt;closed&lt;/code&gt; skin state.
+ *  When it opens, it adds itself as a pop-up to the PopUpManager,
+ *  and transition to the &lt;code&gt;normal&lt;/code&gt; skin state.
+ *  To define open and close animations, use a custom skin with transitions between
+ *  the &lt;code&gt;closed&lt;/code&gt; and &lt;code&gt;normal&lt;/code&gt; skin states.&lt;/p&gt;
+ * 
+ *  &lt;p&gt;Callout changes the default inheritance behavior seen in Flex components 
+ *  and instead, inherits styles from the top-level application. This prevents
+ *  Callout's contents from unintentionally inheriting styles from an owner
+ *  (i.e. Button or TextInput) where the default appearance was desired and
+ *  expected.&lt;/p&gt;
+ *
+ *  &lt;p&gt;The Callout container has the following default characteristics:&lt;/p&gt;
+ *     &lt;table class="innertable"&gt;
+ *     &lt;tr&gt;&lt;th&gt;Characteristic&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;
+ *     &lt;tr&gt;&lt;td&gt;Default size&lt;/td&gt;&lt;td&gt;Large enough to display its children&lt;/td&gt;&lt;/tr&gt;
+ *     &lt;tr&gt;&lt;td&gt;Minimum size&lt;/td&gt;&lt;td&gt;0 pixels&lt;/td&gt;&lt;/tr&gt;
+ *     &lt;tr&gt;&lt;td&gt;Maximum size&lt;/td&gt;&lt;td&gt;10000 pixels wide and 10000 pixels high&lt;/td&gt;&lt;/tr&gt;
+ *     &lt;tr&gt;&lt;td&gt;Default skin class&lt;/td&gt;&lt;td&gt;spark.skins.mobile.CalloutSkin&lt;/td&gt;&lt;/tr&gt;
+ *     &lt;/table&gt;
+ *
+ *  @mxml &lt;p&gt;The &lt;code&gt;&amp;lt;s:Callout&amp;gt;&lt;/code&gt; tag inherits all of the tag
+ *  attributes of its superclass and adds the following tag attributes:&lt;/p&gt;
+ *
+ *  &lt;pre&gt;
+ *  &amp;lt;s:Callout
+ *    &lt;strong&gt;Properties&lt;/strong&gt;
+ *    horizontalPosition="auto"
+ *    verticalPosition="auto"
+ *
+ *    &lt;strong&gt;Styles&lt;/strong&gt;
+ *    contentBackgroundAppearance="inset"
+ *  /&amp;gt;
+ *  &lt;/pre&gt;
+ *
+ *  @see spark.components.CalloutButton
+ *  @see spark.skins.mobile.CalloutSkin
+ *  @see spark.components.ContentBackgroundAppearance
+ *  @see spark.components.CalloutPosition
+ *
+ *  @includeExample examples/CalloutExample.mxml -noswf
+ *
+ *  @langversion 3.0
+ *  @playerversion AIR 3
+ *  @productversion Flex 4.6
+ */</span>
+<span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">Callout</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">SkinnablePopUpContainer</span>
+<span class="ActionScriptBracket/Brace">{</span>
+
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Class constants
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">decomposition</span>:<span class="ActionScriptDefault_Text">Vector</span><span class="ActionScriptBracket/Brace">.&lt;</span><span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptBracket/Brace">&gt;</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptBracket/Brace">&lt;</span><span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptBracket/Brace">&gt;</span><span class="ActionScriptBracket/Brace">[</span>0<span class="ActionScriptOperator">,</span>0<span class="ActionScriptOperator">,</span>0<span class="ActionScriptOperator">,</span>0<span class="ActionScriptOperator">,</span>0<span class="ActionScriptBracket/Brace">]</span>;
+
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Constructor
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>
+    <span class="ActionScriptASDoc">/**
+     *  Constructor.
+     *
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">Callout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Skin parts
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">]
+</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"false"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  An optional skin part that visually connects the owner to the
+     *  contentGroup.
+     *
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">arrow</span>:<span class="ActionScriptDefault_Text">UIComponent</span>;
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Variables
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">invalidatePositionFlag</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Properties
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  horizontalPosition
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_horizontalPosition</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">CalloutPosition</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AUTO</span>;
+
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inspectable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"General"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"before,start,middle,end,after,auto"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">defaultValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  Horizontal position of the callout relative to the owner.
+     *
+     *  &lt;p&gt;Possible values are &lt;code&gt;"before"&lt;/code&gt;, &lt;code&gt;"start"&lt;/code&gt;,
+     *  &lt;code&gt;"middle"&lt;/code&gt;, &lt;code&gt;"end"&lt;/code&gt;, &lt;code&gt;"after"&lt;/code&gt;,
+     *  and &lt;code&gt;"auto"&lt;/code&gt; (default).&lt;/p&gt;
+     *
+     *  @default CalloutPosition.AUTO
+     *  @see spark.components.CalloutPosition
+     *
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">horizontalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_horizontalPosition</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">horizontalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">_horizontalPosition</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+
+        <span class="ActionScriptDefault_Text">_horizontalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+
+        <span class="ActionScriptDefault_Text">invalidatePosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  actualHorizontalPosition
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_actualHorizontalPosition</span>:<span class="ActionScriptDefault_Text">String</span>;
+
+    <span class="ActionScriptASDoc">/**
+     *  Fully resolved horizontal position after evaluating CalloutPosition.AUTO.
+     * 
+     *  &lt;p&gt;Update this property in &lt;code&gt;commitProperties()&lt;/code&gt; when the
+     *  explicit &lt;code&gt;horizontalPosition&lt;/code&gt; is CalloutPosition.AUTO. 
+     *  This property must be updated in &lt;code&gt;updatePopUpPosition()&lt;/code&gt;
+     *  when attempting to reposition the Callout.&lt;/p&gt; 
+     *  
+     *  &lt;p&gt;Subclasses should read this property when computing the &lt;code&gt;arrowDirection&lt;/code&gt;,
+     *  the arrow position in &lt;code&gt;updateSkinDisplayList()&lt;/code&gt;.&lt;/p&gt;
+     *
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">actualHorizontalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_actualHorizontalPosition</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_actualHorizontalPosition</span>;
+
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">horizontalPosition</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">actualHorizontalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">_actualHorizontalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  verticalPosition
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_verticalPosition</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">CalloutPosition</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AUTO</span>;
+
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inspectable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"General"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"before,start,middle,end,after,auto"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">defaultValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  Vertical position of the callout relative to the owner.
+     *
+     *  &lt;p&gt;Possible values are &lt;code&gt;"before"&lt;/code&gt;, &lt;code&gt;"start"&lt;/code&gt;,
+     *  &lt;code&gt;"middle"&lt;/code&gt;, &lt;code&gt;"end"&lt;/code&gt;, &lt;code&gt;"after"&lt;/code&gt;,
+     *  and &lt;code&gt;"auto"&lt;/code&gt; (default).&lt;/p&gt;
+     *
+     *  @default CalloutPosition.AUTO
+     *  @see spark.components.CalloutPosition
+     *
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">verticalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_verticalPosition</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">verticalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">_verticalPosition</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+
+        <span class="ActionScriptDefault_Text">_verticalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+
+        <span class="ActionScriptDefault_Text">invalidatePosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  actualVerticalPosition
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_actualVerticalPosition</span>:<span class="ActionScriptDefault_Text">String</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     *  Fully resolved vertical position after evaluating CalloutPosition.AUTO.
+     * 
+     *  &lt;p&gt;Update this property in &lt;code&gt;commitProperties()&lt;/code&gt; when the
+     *  explicit &lt;code&gt;verticalPosition&lt;/code&gt; is CalloutPosition.AUTO. 
+     *  This property must be updated in &lt;code&gt;updatePopUpPosition()&lt;/code&gt;
+     *  when attempting to reposition the Callout.&lt;/p&gt; 
+     *  
+     *  &lt;p&gt;Subclasses should read this property when computing the &lt;code&gt;arrowDirection&lt;/code&gt;,
+     *  the arrow position in &lt;code&gt;updateSkinDisplayList()&lt;/code&gt;.&lt;/p&gt;
+     *
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">actualVerticalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_actualVerticalPosition</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_actualVerticalPosition</span>;
+
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">verticalPosition</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">actualVerticalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">_actualVerticalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  arrowDirection
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_arrowDirection</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">ArrowDirection</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">NONE</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *  Indicates if arrow direction was flipped automatically.
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">arrowDirectionAdjusted</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+
+    <span class="ActionScriptASDoc">/**
+     *  A read-only property that indicates the direction from the callout
+     *  towards the owner.
+     *
+     *  &lt;p&gt;This value is computed based on the callout position given by
+     *  &lt;code&gt;horizontalPosition&lt;/code&gt; and &lt;code&gt;verticalPosition&lt;/code&gt;.
+     *  Exterior and interior positions will point from the callout towards
+     *  the edge of the owner. Corner and absolute center positions are not
+     *  supported and will return a value of &lt;code&gt;"none".&lt;/code&gt;&lt;/p&gt;
+     * 
+     *  @default none
+     *
+     *  @see spark.components.ArrowDirection
+     *
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">arrowDirection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_arrowDirection</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *  Invalidate skin when the arrowDirection changes. Dispatches an 
+     *  "arrowDirectionChanged" event when the property is set.
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">setArrowDirection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_arrowDirection</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_arrowDirection</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        
+        <span class="ActionScriptComment">// Instead of using skin states for each arrowDirection, the
+</span>        <span class="ActionScriptComment">// skin must override commitProperties() and account for
+</span>        <span class="ActionScriptComment">// arrowDirection on it's own.
+</span>        <span class="ActionScriptDefault_Text">skin</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">invalidateProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptComment">// adjust margins based on arrow direction
+</span>        <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">arrowDirection</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">ArrowDirection</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DOWN</span>:
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptComment">// Set the marginBottom to zero to place the arrow adjacent to the keyboard
+</span>                <span class="ActionScriptDefault_Text">softKeyboardEffectMarginBottom</span> <span class="ActionScriptOperator">=</span> 0;
+                <span class="ActionScriptDefault_Text">softKeyboardEffectMarginTop</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">margin</span>;
+                <span class="ActionScriptReserved">break</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">ArrowDirection</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UP</span>:
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptComment">// Arrow should already be adjacent to the owner or the top of
+</span>                <span class="ActionScriptComment">// the screen.
+</span>                <span class="ActionScriptDefault_Text">softKeyboardEffectMarginTop</span> <span class="ActionScriptOperator">=</span> 0;
+                <span class="ActionScriptDefault_Text">softKeyboardEffectMarginBottom</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">margin</span>;
+                <span class="ActionScriptReserved">break</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">default</span>:
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">softKeyboardEffectMarginBottom</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">margin</span>;
+                <span class="ActionScriptDefault_Text">softKeyboardEffectMarginTop</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">margin</span>;
+                <span class="ActionScriptReserved">break</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">hasEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"arrowDirectionChanged"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"arrowDirectionChanged"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  margin
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_margin</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">NaN</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *  Defines a margin around the Callout to nudge it's position away from the
+     *  edge of the screen.
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">margin</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Number</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">isNaN</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_margin</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">dpi</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">FlexGlobals</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">topLevelApplication</span><span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptString">"applicationDPI"</span><span class="ActionScriptBracket/Brace">]</span>;
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">dpi</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">dpi</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">DPIClassification</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DPI_320</span>:
+                    <span class="ActionScriptBracket/Brace">{</span>
+                        <span class="ActionScriptDefault_Text">_margin</span> <span class="ActionScriptOperator">=</span> 16;
+                        <span class="ActionScriptReserved">break</span>;
+                    <span class="ActionScriptBracket/Brace">}</span>
+                    <span class="ActionScriptReserved">case</span> <span class="ActionScriptDefault_Text">DPIClassification</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DPI_240</span>:
+                    <span class="ActionScriptBracket/Brace">{</span>
+                        <span class="ActionScriptDefault_Text">_margin</span> <span class="ActionScriptOperator">=</span> 12;
+                        <span class="ActionScriptReserved">break</span>;
+                    <span class="ActionScriptBracket/Brace">}</span>
+                    <span class="ActionScriptReserved">default</span>:
+                    <span class="ActionScriptBracket/Brace">{</span>
+                        <span class="ActionScriptComment">// default DPI_160
+</span>                        <span class="ActionScriptDefault_Text">_margin</span> <span class="ActionScriptOperator">=</span> 8;
+                        <span class="ActionScriptReserved">break</span>;
+                    <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">_margin</span> <span class="ActionScriptOperator">=</span> 8;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_margin</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_explicitMoveForSoftKeyboard</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">moveForSoftKeyboard</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Boolean</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">// If no explicit setting, then automatically disable move when
+</span>        <span class="ActionScriptComment">// pointing up towards the owner.
+</span>        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">_explicitMoveForSoftKeyboard</span> <span class="ActionScriptOperator">&amp;&amp;</span> 
+            <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">arrowDirection</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ArrowDirection</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UP</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">false</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveForSoftKeyboard</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">moveForSoftKeyboard</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Boolean</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveForSoftKeyboard</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        
+        <span class="ActionScriptDefault_Text">_explicitMoveForSoftKeyboard</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  calloutMaxWidth
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_calloutMaxWidth</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">NaN</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">calloutMaxWidth</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Number</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_calloutMaxWidth</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">calloutMaxWidth</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_calloutMaxWidth</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_calloutMaxWidth</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        
+        <span class="ActionScriptDefault_Text">invalidateMaxSize</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  calloutMaxHeight
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_calloutMaxHeight</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">NaN</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">calloutMaxHeight</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Number</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_calloutMaxHeight</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">calloutMaxHeight</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_calloutMaxHeight</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_calloutMaxHeight</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        
+        <span class="ActionScriptDefault_Text">invalidateMaxSize</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Overridden methods
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">explicitMaxWidth</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Number</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">isNaN</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">explicitMaxWidth</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">explicitMaxWidth</span>;
+        
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">calloutMaxWidth</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">explicitMaxHeight</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Number</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">isNaN</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">explicitMaxHeight</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">explicitMaxHeight</span>;
+        
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">calloutMaxHeight</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">commitProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">commitProperties</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptComment">// Do not commit position changes if closed (no owner) or owner was 
+</span>        <span class="ActionScriptComment">// removed from the display list.
+</span>        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">owner</span> <span class="ActionScriptOperator">||</span> <span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">owner</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">parent</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptComment">// Compute actual positions when using AUTO
+</span>        <span class="ActionScriptDefault_Text">commitAutoPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptComment">// Compute max size based on actual positions
+</span>        <span class="ActionScriptDefault_Text">commitMaxSize</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">arrow</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptComment">// arrowDirection can be set in 2 ways: (1) horizontalPostion/verticalPosition
+</span>            <span class="ActionScriptComment">// changes and (2) flipping the axis to fit on screen. 
+</span>            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">arrowDirectionAdjusted</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptComment">// Invalidate only when the arrow direction changes
+</span>                <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">direction</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">determineArrowPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">actualHorizontalPosition</span><span class="ActionScriptOperator">,</span>
+                    <span class="ActionScriptDefault_Text">actualVerticalPosition</span><span class="ActionScriptBracket/Brace">)</span>;
+                
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">arrowDirection</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptDefault_Text">direction</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptDefault_Text">setArrowDirection</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">direction</span><span class="ActionScriptBracket/Brace">)</span>;
+                    
+                    <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">arrow</span><span class="ActionScriptBracket/Brace">)</span>
+                        <span class="ActionScriptDefault_Text">arrow</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">visible</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">arrowDirection</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptDefault_Text">ArrowDirection</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">NONE</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptComment">// Always reset the arrow position
+</span>            <span class="ActionScriptDefault_Text">invalidateDisplayList</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *  Re-position the pop-up using actualHorizontalPosition and
+     *  actualVerticalPosition. 
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">updatePopUpPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">owner</span> <span class="ActionScriptOperator">||</span> <span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">systemManager</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">popUpPoint</span>:<span class="ActionScriptDefault_Text">Point</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">calculatePopUpPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">ownerComponent</span>:<span class="ActionScriptDefault_Text">UIComponent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">owner</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">UIComponent</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">concatenatedColorTransform</span>:<span class="ActionScriptDefault_Text">ColorTransform</span> <span class="ActionScriptOperator">=</span> 
+            <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">ownerComponent</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">ownerComponent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">$transform</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">concatenatedColorTransform</span> : <span class="ActionScriptReserved">null</span>;
+        
+        <span class="ActionScriptDefault_Text">PopUpUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">applyPopUpTransform</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">owner</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">concatenatedColorTransform</span><span class="ActionScriptOperator">,</span>
+                                      <span class="ActionScriptDefault_Text">systemManager</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">popUpPoint</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *
+     *  Cooperative layout
+     *  @see spark.components.supportClasses.TrackBase#partAdded
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">partAdded</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">partAdded</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span><span class="ActionScriptBracket/Brace">)</span>;
+
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">arrow</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">arrow</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">ResizeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RESIZE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">arrow_resizeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">partRemoved</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">partRemoved</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span><span class="ActionScriptBracket/Brace">)</span>;
+
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">arrow</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">arrow</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">ResizeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RESIZE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">arrow_resizeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">open</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">owner</span>:<span class="ActionScriptDefault_Text">DisplayObjectContainer</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">modal</span>:<span class="ActionScriptDefault_Text">Boolean</span><span class="ActionScriptOperator">=</span><span class="ActionScriptReserved">false</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">isOpen</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptComment">// reset state
+</span>        <span class="ActionScriptDefault_Text">invalidatePositionFlag</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+        <span class="ActionScriptDefault_Text">arrowDirectionAdjusted</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+
+        <span class="ActionScriptComment">// Add to PopUpManager, calls updatePopUpPosition(), and change state
+</span>        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">open</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">owner</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">modal</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptComment">// Reposition the callout when the screen changes
+</span>        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">systemManagerParent</span>:<span class="ActionScriptDefault_Text">SystemManager</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">parent</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">SystemManager</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">systemManagerParent</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">systemManagerParent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RESIZE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">systemManager_resizeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">close</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">commit</span>:<span class="ActionScriptDefault_Text">Boolean</span><span class="ActionScriptOperator">=</span><span class="ActionScriptReserved">false</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">data</span>:<span class="ActionScriptOperator">*</span>=<span class="ActionScriptOperator">n</span>

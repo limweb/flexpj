@@ -1,0 +1,810 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>CalloutButton.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//  ADOBE SYSTEMS INCORPORATED
+</span><span class="ActionScriptComment">//  Copyright 2011 Adobe Systems Incorporated
+</span><span class="ActionScriptComment">//  All Rights Reserved.
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">//  NOTICE: Adobe permits you to use, modify, and distribute this file
+</span><span class="ActionScriptComment">//  in accordance with the terms of the license agreement accompanying it.
+</span><span class="ActionScriptComment">//
+</span><span class="ActionScriptComment">////////////////////////////////////////////////////////////////////////////////
+</span>
+<span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">th</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">co</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">tomato</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">themes</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">component</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">callout</span>
+<span class="ActionScriptBracket/Brace">{</span>
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ClassFactory</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IFactory</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mx_internal</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">BitFlagUtil</span>;
+
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">supportClasses</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DropDownController</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ContainerDestructionPolicy</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DropDownEvent</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PopUpEvent</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">layouts</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">supportClasses</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LayoutBase</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Button</span>;
+
+<span class="ActionScriptReserved">use</span> <span class="ActionScriptReserved">namespace</span> <span class="ActionScriptDefault_Text">mx_internal</span>;
+
+<span class="ActionScriptComment">//--------------------------------------
+</span><span class="ActionScriptComment">//  Styles
+</span><span class="ActionScriptComment">//--------------------------------------
+</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Exclude</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"repeatDelay"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">kind</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"style"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Exclude</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"repeatInterval"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">kind</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"style"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptComment">//--------------------------------------
+</span><span class="ActionScriptComment">//  Events
+</span><span class="ActionScriptComment">//--------------------------------------
+</span>
+<span class="ActionScriptASDoc">/**
+ *  Dispatched when the callout closes for any reason, such when: 
+ *  &lt;ul&gt;
+ *      &lt;li&gt;The callout is programmatically closed.&lt;/li&gt;
+ *      &lt;li&gt;The user clicks outside of the callout.&lt;/li&gt;
+ *      &lt;li&gt;The user clicks the open button while the callout is 
+ *  displayed.&lt;/li&gt;
+ *  &lt;/ul&gt;
+ *
+ *  @eventType spark.events.DropDownEvent.CLOSE
+ *  
+ *  @langversion 3.0
+ *  @playerversion AIR 3
+ *  @productversion Flex 4.6
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"close"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"spark.events.DropDownEvent"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Dispatched when the user clicks the open button
+ *  to display the callout.  
+ *
+ *  @eventType spark.events.DropDownEvent.OPEN
+ *  
+ *  @langversion 3.0
+ *  @playerversion AIR 3
+ *  @productversion Flex 4.6
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"open"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"spark.events.DropDownEvent"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptComment">//--------------------------------------
+</span><span class="ActionScriptComment">//  Other metadata
+</span><span class="ActionScriptComment">//--------------------------------------
+</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">IconFile</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"Callout.png"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">DefaultProperty</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutContent"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  The CalloutButton control is a drop down component that defines a button to
+ *  open and close a Callout container. 
+ *  The CalloutButton specifies the layout and child components 
+ *  of the Callout container.
+ *
+ *  &lt;p&gt;The following image shows a Callout container under the CalloutButton 
+ *  labeled 'Open callout':&lt;/p&gt;
+ *
+ * &lt;p&gt;
+ *  &lt;img src="../../images/ca_calloutButton_ca.png" alt="Callout button" /&gt;
+ * &lt;/p&gt;
+ *
+ *  &lt;p&gt;The CalloutButton control uses the spark.components.supportClasses.DropDownController
+ *  class to manage the Callout container. 
+ *  You can access the DropDownController by using the protected 
+ *  &lt;code&gt;CalloutButton.dropDownController&lt;/code&gt; property.&lt;/p&gt;
+ *
+ *  &lt;p&gt;When the callout is open:&lt;/p&gt;
+ *  &lt;ul&gt;
+ *    &lt;li&gt;Clicking the button closes the callout&lt;/li&gt;
+ *    &lt;li&gt;Clicking outside of the callout closes the callout.&lt;/li&gt;
+ *  &lt;/ul&gt;
+ *
+ *  &lt;p&gt;The CalloutButton component has the following default characteristics:&lt;/p&gt;
+ *     &lt;table class="innertable"&gt;
+ *        &lt;tr&gt;
+ *           &lt;th&gt;Characteristic&lt;/th&gt;
+ *           &lt;th&gt;Description&lt;/th&gt;
+ *        &lt;/tr&gt;
+ *        &lt;tr&gt;
+ *           &lt;td&gt;Default size&lt;/td&gt;
+ *           &lt;td&gt;Wide enough to display the text label of the control&lt;/td&gt;
+ *        &lt;/tr&gt;
+ *        &lt;tr&gt;
+ *           &lt;td&gt;Minimum size&lt;/td&gt;
+ *           &lt;td&gt;32 pixels wide and 43 pixels high&lt;/td&gt;
+ *        &lt;/tr&gt;
+ *        &lt;tr&gt;
+ *           &lt;td&gt;Maximum size&lt;/td&gt;
+ *           &lt;td&gt;10000 pixels wide and 10000 pixels high&lt;/td&gt;
+ *        &lt;/tr&gt;
+ *        &lt;tr&gt;
+ *           &lt;td&gt;Default skin class&lt;/td&gt;
+ *           &lt;td&gt;spark.skins.mobile.CalloutButtonSkin&lt;/td&gt;
+ *        &lt;/tr&gt;
+ *     &lt;/table&gt;
+ *
+ *  @mxml
+ *  
+ *  &lt;p&gt;The &lt;code&gt;&amp;lt;s:CalloutButton&amp;gt;&lt;/code&gt; tag inherits all of the tag 
+ *  attributes of its superclass and adds the following tag attributes:&lt;/p&gt;
+ *  
+ *  &lt;pre&gt;
+ *  &amp;lt;s:CalloutButton
+ *   &lt;strong&gt;Properties&lt;/strong&gt;
+ *    calloutDestructionPolicy="auto"
+ *    calloutLayout="BasicLayout"
+ *    horizontalPosition="auto"
+ *    verticalPosition="auto
+ * 
+ *   &lt;strong&gt;Events&lt;/strong&gt;
+ *    open="&lt;i&gt;No default&lt;/i&gt;"
+ *    close="&lt;i&gt;No default&lt;/i&gt;"
+ *      ...
+ *      &lt;i&gt;child tags&lt;/i&gt;
+ *      ...
+ *  &amp;lt;/s:CalloutButton&amp;gt;
+ *  &lt;/pre&gt;
+ * 
+ *  @see spark.components.Callout
+ *  @see spark.components.Button
+ *  @see spark.components.supportClasses.DropDownController
+ *
+ *  @includeExample examples/CalloutButtonExample.mxml -noswf
+ *  
+ *  @langversion 3.0
+ *  @playerversion AIR 3
+ *  @productversion Flex 4.6
+ */</span>
+<span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">CalloutButton</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">Button</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Class constants
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">CALLOUT_CONTENT_PROPERTY_FLAG</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> 1 <span class="ActionScriptOperator">&lt;&lt;</span> 0;
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">CALLOUT_LAYOUT_PROPERTY_FLAG</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> 1 <span class="ActionScriptOperator">&lt;&lt;</span> 1;
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">HORIZONTAL_POSITION_PROPERTY_FLAG</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> 1 <span class="ActionScriptOperator">&lt;&lt;</span> 2;
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">VERTICAL_POSITION_PROPERTY_FLAG</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> 1 <span class="ActionScriptOperator">&lt;&lt;</span> 3;
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Constructor
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  Constructor.
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">CalloutButton</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptDefault_Text">dropDownController</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">DropDownController</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Skin parts
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">SkinPart</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"false"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  A skin part that defines the drop-down factory which creates the Callout
+     *  instance.
+     * 
+     *  If &lt;code&gt;dropDown&lt;/code&gt; is not defined on the skin, a  
+     *  &lt;code&gt;ClassFactory&lt;/code&gt; is created to generate a default Callout
+     *  instance.
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">dropDown</span>:<span class="ActionScriptDefault_Text">IFactory</span>;
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Variables
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *  Several properties are proxied to callout.  However, when callout
+     *  is not around, we need to store values set on CalloutButton.  This object 
+     *  stores those values.  If callout is around, the values are stored 
+     *  on the callout directly.  However, we need to know what values 
+     *  have been set by the developer on the CalloutButton (versus set on 
+     *  the callout or defaults of the callout) as those are values 
+     *  we want to carry around if the callout changes (via a new skin). 
+     *  In order to store this info effeciently, calloutProperties becomes 
+     *  a uint to store a series of BitFlags.  These bits represent whether a 
+     *  property has been explicitely set on this CalloutButton.  When the 
+     *  callout is not around, calloutProperties is a typeless 
+     *  object to store these proxied properties.  When callout is around,
+     *  calloutProperties stores booleans as to whether these properties 
+     *  have been explicitely set or not.
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">calloutProperties</span>:<span class="ActionScriptDefault_Text">Object</span> <span class="ActionScriptOperator">=</span> {};
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Properties proxied to callout
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  calloutContent
+</span>    <span class="ActionScriptComment">//---------------------------------- 
+</span>    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">ArrayElementType</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"mx.core.IVisualElement"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  The set of components to include in the Callout's content.
+     *
+     *  @default null
+     *
+     *  @see spark.components.Callout
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">calloutContent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Array</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contentGroup</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contentGroup</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getMXMLContent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutContent</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">calloutContent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Array</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mxmlContent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptOperator">,</span> 
+                <span class="ActionScriptDefault_Text">CALLOUT_CONTENT_PROPERTY_FLAG</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutContent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  calloutLayout
+</span>    <span class="ActionScriptComment">//---------------------------------- 
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  Defines the layout of the Callout container.
+     *
+     *  @default BasicLayout
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">calloutLayout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">LayoutBase</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>  <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">layout</span> : <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutLayout</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">calloutLayout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">LayoutBase</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">layout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptOperator">,</span> 
+                <span class="ActionScriptDefault_Text">CALLOUT_LAYOUT_PROPERTY_FLAG</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutLayout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  horizontalPosition
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inspectable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"General"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"before,start,middle,end,after,auto"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">defaultValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @copy spark.components.Callout#horizontalPosition
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">horizontalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span>;
+        
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">horizontalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptOperator">,</span> 
+                <span class="ActionScriptDefault_Text">HORIZONTAL_POSITION_PROPERTY_FLAG</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  verticalPosition
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inspectable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"General"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"before,start,middle,end,after,auto"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">defaultValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @copy spark.components.Callout#verticalPosition
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">verticalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span>;
+        
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">verticalPosition</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+            <span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptOperator">,</span> 
+                <span class="ActionScriptDefault_Text">VERTICAL_POSITION_PROPERTY_FLAG</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Properties
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  callout
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_callout</span>:<span class="ActionScriptDefault_Text">Callout</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutChanged"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  The Callout instance created after the &lt;code&gt;DropDownEvent.OPEN&lt;/code&gt;
+     *  is fired. The instance is created using the &lt;code&gt;dropDown&lt;/code&gt;
+     *  &lt;code&gt;IFactory&lt;/code&gt; skin part.
+     * 
+     *  @see #calloutDestructionPolicy
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Callout</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_callout</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">setCallout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Callout</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_callout</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_callout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">hasEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutChanged"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutChanged"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  dropDownController
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_dropDownController</span>:<span class="ActionScriptDefault_Text">DropDownController</span>; 
+    
+    <span class="ActionScriptASDoc">/**
+     *  Instance of the DropDownController class that handles all of the mouse, keyboard 
+     *  and focus user interactions. 
+     * 
+     *  Flex calls the &lt;code&gt;initializeDropDownController()&lt;/code&gt; method after 
+     *  the DropDownController instance is created in the constructor.
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">DropDownController</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_dropDownController</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">DropDownController</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_dropDownController</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_dropDownController</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        
+        <span class="ActionScriptDefault_Text">_dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">closeOnResize</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+        <span class="ActionScriptDefault_Text">_dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">DropDownEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">OPEN</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dropDownController_openHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">_dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">DropDownEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CLOSE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dropDownController_closeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptDefault_Text">_dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">openButton</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">this</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">_dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dropDown</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">callout</span>;    
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  isDropDownOpen
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  @copy spark.components.supportClasses.DropDownController#isOpen
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">isDropDownOpen</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Boolean</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isOpen</span>;
+        <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptReserved">false</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  calloutDestructionPolicy
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_calloutDestructionPolicy</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">ContainerDestructionPolicy</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AUTO</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Inspectable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"General"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">enumeration</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto,never"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">defaultValue</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"auto"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  Defines the destruction policy the callout button uses
+     *  when the callout is closed. 
+     *  If set to &lt;code&gt;"auto"&lt;/code&gt;, the button 
+     *  destroys the Callout instance when it is closed.  
+     *  If set to &lt;code&gt;"never"&lt;/code&gt;, the Callout container 
+     *  is cached in memory.
+     * 
+     *  @default auto
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">calloutDestructionPolicy</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_calloutDestructionPolicy</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">calloutDestructionPolicy</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_calloutDestructionPolicy</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_calloutDestructionPolicy</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        
+        <span class="ActionScriptComment">// destroy the callout immediately if currently closed
+</span>        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">isDropDownOpen</span> <span class="ActionScriptOperator">&amp;&amp;</span>
+            <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutDestructionPolicy</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ContainerDestructionPolicy</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AUTO</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">destroyCallout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Overridden methods
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">attachSkin</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">attachSkin</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptComment">// create dropDown if it was not found in the skin
+</span>        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">dropDown</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptOperator">!</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"dropDown"</span> <span class="ActionScriptReserved">in</span> <span class="ActionScriptDefault_Text">skin</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">dropDown</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ClassFactory</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">Callout</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">partAdded</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">partAdded</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptString">"dropDown"</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptComment">// copy proxied values from calloutProperties (if set) to callout
+</span>            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">newCalloutProperties</span>:<span class="ActionScriptDefault_Text">uint</span> <span class="ActionScriptOperator">=</span> 0;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">calloutInstance</span>:<span class="ActionScriptDefault_Text">Callout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">Callout</span>;
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutInstance</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">calloutInstance</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">id</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"callout"</span>;
+                <span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dropDown</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">calloutInstance</span>;
+                
+                <span class="ActionScriptDefault_Text">calloutInstance</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">PopUpEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">OPEN</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">callout_openHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptDefault_Text">calloutInstance</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">PopUpEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CLOSE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">callout_closeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+                
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutContent</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">undefined</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptDefault_Text">calloutInstance</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mxmlContent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutContent</span>;
+                    <span class="ActionScriptDefault_Text">newCalloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">newCalloutProperties</span><span class="ActionScriptOperator">,</span> 
+                        <span class="ActionScriptDefault_Text">CALLOUT_CONTENT_PROPERTY_FLAG</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutLayout</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">undefined</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptDefault_Text">calloutInstance</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">layout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutLayout</span>;
+                    <span class="ActionScriptDefault_Text">newCalloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">newCalloutProperties</span><span class="ActionScriptOperator">,</span> 
+                        <span class="ActionScriptDefault_Text">CALLOUT_LAYOUT_PROPERTY_FLAG</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">undefined</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptDefault_Text">calloutInstance</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span>;
+                    <span class="ActionScriptDefault_Text">newCalloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">newCalloutProperties</span><span class="ActionScriptOperator">,</span> 
+                        <span class="ActionScriptDefault_Text">HORIZONTAL_POSITION_PROPERTY_FLAG</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span> <span class="ActionScriptOperator">!==</span> <span class="ActionScriptDefault_Text">undefined</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptBracket/Brace">{</span>
+                    <span class="ActionScriptDefault_Text">calloutInstance</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">calloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span>;
+                    <span class="ActionScriptDefault_Text">newCalloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">update</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">newCalloutProperties</span><span class="ActionScriptOperator">,</span> 
+                        <span class="ActionScriptDefault_Text">VERTICAL_POSITION_PROPERTY_FLAG</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                
+                <span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">newCalloutProperties</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">partRemoved</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">dropDownController</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">instance</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dropDown</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptString">"dropDown"</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">PopUpEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">OPEN</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">callout_openHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">PopUpEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CLOSE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">callout_closeHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptComment">// copy proxied values from callout (if explicitely set) to calloutProperties
+</span>            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">newCalloutProperties</span>:<span class="ActionScriptDefault_Text">Object</span> <span class="ActionScriptOperator">=</span> {};
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isSet</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">CALLOUT_CONTENT_PROPERTY_FLAG</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">&amp;&amp;</span>
+                <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contentGroup</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">newCalloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutContent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contentGroup</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getMXMLContent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contentGroup</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">mxmlContent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isSet</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">CALLOUT_LAYOUT_PROPERTY_FLAG</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">newCalloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">calloutLayout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">layout</span>;
+                <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">layout</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isSet</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">HORIZONTAL_POSITION_PROPERTY_FLAG</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">newCalloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">horizontalPosition</span>;
+            
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">BitFlagUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isSet</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">uint</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">VERTICAL_POSITION_PROPERTY_FLAG</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">newCalloutProperties</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">verticalPosition</span>;
+            
+            <span class="ActionScriptDefault_Text">calloutProperties</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">newCalloutProperties</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">partRemoved</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">partName</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">instance</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Methods
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  Initializes the dropDown and changes the skin state to open. 
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span> 
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">openDropDown</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">openDropDown</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  Changes the skin state to normal.
+     *  
+     *  @langversion 3.0
+     *  @playerversion AIR 3
+     *  @productversion Flex 4.6
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">closeDropDown</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">closeDropDown</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">false</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *  Destroys the callout 
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">destroyCallout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">removeDynamicPartInstance</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"dropDown"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">setCallout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Event handlers
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *  Event handler for the &lt;code&gt;dropDownController&lt;/code&gt; 
+     *  &lt;code&gt;DropDownEvent.OPEN&lt;/code&gt; event. Creates and opens the Callout.
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">dropDownController_openHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">DropDownEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">setCallout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">createDynamicPartInstance</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"dropDown"</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">Callout</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptComment">// close the callout if the CalloutButton is removed
+</span>            <span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">REMOVED_FROM_STAGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">button_removedFromStage</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">open</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptReserved">false</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     *  Event handler for the &lt;code&gt;dropDownController&lt;/code&gt; 
+     *  &lt;code&gt;DropDownEvent.CLOSE&lt;/code&gt; event. Closes the Callout.
+     */</span>
+    <span class="ActionScriptDefault_Text">mx_internal</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">dropDownController_closeHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">DropDownEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">// If the callout was closed directly, then callout could already be
+</span>        <span class="ActionScriptComment">// destroyed by calloutDestructionPolicy
+</span>        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">REMOVED_FROM_STAGE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">button_removedFromStage</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptComment">// Dispatch the close event after the callout's PopUpEvent.CLOSE fires
+</span>            <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">close</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">callout_openHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">PopUpEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">DropDownEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">DropDownEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">OPEN</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">callout_closeHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">PopUpEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">// Sanity check. Was callout closed without calling closeDropDown()? 
+</span>        <span class="ActionScriptComment">// If so, call closeDropDown directly to remove event listeners. This 
+</span>        <span class="ActionScriptComment">// callout_closeHandler will only be called once since the 2nd call
+</span>        <span class="ActionScriptComment">// to close() in dropDownController_closeHandler() will not dispatch
+</span>        <span class="ActionScriptComment">// another PopUpEvent.CLOSE.
+</span>        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">dropDownController</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isOpen</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">closeDropDown</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutDestructionPolicy</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">ContainerDestructionPolicy</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">AUTO</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">destroyCallout</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">DropDownEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">DropDownEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CLOSE</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptASDoc">/**
+     *  @private
+     */</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">button_removedFromStage</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">isDropDownOpen</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptComment">// Hide the callout immediately instead of waiting for the skin
+</span>        <span class="ActionScriptComment">// state to transition to "closed"
+</span>        <span class="ActionScriptDefault_Text">callout</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">visible</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+
+        <span class="ActionScriptDefault_Text">closeDropDown</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<main:IGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:MainClass="th.co.tomato.themes.component.MainClass.*"
+		 xmlns:component="th.co.tomato.themes.component.*"
+		 xmlns:main="th.co.tomato.main.*"
+		 height="100%" width="100%"
+		 xmlns:linkbar="th.co.tomato.themes.component.linkbar.*"
+		 creationComplete="init()" 
+		 resizeEffect="rz" 
+		 >
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.controls.LinkButton;
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			import mx.events.ItemClickEvent;
+			import mx.utils.ObjectUtil;
+			
+			import th.co.tomato.main.MainConfig;
+			import th.co.tomato.themes.FlatTheme;
+			import th.co.tomato.themes.component.linkbar.LinkBarSeparatorSkin;
+			
+			[Bindable] private var thisHeight:Number = 0;
+			
+			protected function lnkbar_ItemClickHandler(event:ItemClickEvent):void
+			{
+				Alert.show(event.item as String,'itemClick');
+			}
+			
+			protected function ResizeContent(event:MouseEvent):void
+			{
+				rz.duration = 500;
+				if(this.height == 50 ){
+					this.height = MainConfig.getInstance.mainSize;
+					pnlMain.height = MainConfig.getInstance.mainSize-50;
+				} else {
+					this.height =  50;
+					pnlMain.height  = 0;
+				}
+			}
+			
+			override public function init():void
+			{
+				thisHeight =MainConfig.getInstance.mainSize;
+			}
+			
+			protected function rz_effectEndHandler(event:EffectEvent):void
+			{
+				rz.duration = 0;
+			}
+			
+			protected function rz_effectStartHandler(event:EffectEvent):void
+			{
+				rectbox.visible = false;
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:ArrayCollection id="ac">
+			<fx:Object>Home</fx:Object>
+			<fx:Object>จอง</fx:Object>
+			<fx:Object>รายการ</fx:Object>
+			<fx:Object>รับชำระเงิน</fx:Object>
+		</s:ArrayCollection>
+		<mx:Resize id="rz"  duration="0"
+				   effectStart="rz_effectStartHandler(event)" 
+				   effectEnd="rz_effectEndHandler(event)"
+				   />
+	</fx:Declarations>
+	<s:Rect top="0" left="0" right="0" bottom="0" id="rectbox" >
+		<s:fill>
+			<s:SolidColor color="0xFFFFFF" />
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="{FlatTheme.upColor}"  weight="1"/>
+		</s:stroke>
+	</s:Rect>
+	
+	<s:Group top="0.5" left="0.5" right="0.5" bottom="0.5" >
+		<s:layout>
+			<s:VerticalLayout gap="0" />
+		</s:layout>
+		<s:Group width="100%" height="50">
+		<s:Rect top="0" left="0" right="0" bottom="0"  >
+			<s:fill>
+				<s:SolidColor color="{FlatTheme.upColor}" />
+			</s:fill>
+		</s:Rect>
+		<s:HGroup width="100%" height="50" textAlign="right" horizontalAlign="right" verticalAlign="middle" paddingRight="5" paddingLeft="5">
+			<s:RichText text="X" fontSize="25" fontFamily="myiconfont" color="{FlatTheme.txtupColor}" />
+			<s:Spacer width="10" />
+			<s:RichText text="{InventoryModule.getInstance.title}" fontSize="20"  color="{FlatTheme.txtupColor}"/>
+			<s:Spacer width="100%" />
+			<MainClass:TwostateBtn skinClass="th.co.tomato.themes.component.twostatebtn.TwoStateBtnSkin" label="A" id="two2" />
+			<s:Button label="A" skinClass="th.co.tomato.themes.component.QuadrateIconBtn.QuadrateIconBtnSkin"  />
+			<s:Button label="B" skinClass="th.co.tomato.themes.component.RotateBtn.RotateBtnSkin" height="30" width="30" click="ResizeContent(event)" />
+			<s:ToggleButton skinClass="th.co.tomato.themes.component.ToggleButtonBtn.ToggleButtonIconSkin" id="twoBtn"  label="A"/>	  
+			<s:ComboBox x="540" y="114" labelField="name"
+						skinClass="th.co.tomato.themes.component.Combobox.FlatComboboxskin"/>
+		</s:HGroup>	
+		</s:Group>
+		<mx:Panel id="pnlMain" width="100%" height="100%" borderColor="{FlatTheme.upColor}"
+				  dropShadowVisible="false" headerHeight="0" resizeEffect="rz">
+			<s:Group width="100%" height="100%" id="MainG">
+				<s:layout>
+					<s:VerticalLayout gap="-5" paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5" />
+				</s:layout>
+				<s:Group width="100%" height="40" >
+					<linkbar:FlatlnkBar ac="{ac}" width="100%" ItemClick="lnkbar_ItemClickHandler(event)" id="lnkbar" CloseDisable="false" />
+				</s:Group>
+				<s:Spacer height="50" />
+				<s:HGroup width="100%" gap="10">
+					<s:RadioButton skinClass="th.co.tomato.themes.component.Navigator.WebNav" label="ลูกค้า" groupName="TabNav" width="150" />
+					<s:RadioButton skinClass="th.co.tomato.themes.component.Navigator.WebNav" label="จอง" groupName="TabNav"  />
+					<s:RadioButton skinClass="th.co.tomato.themes.component.Navigator.WebNav" label="ไฟแน้นท์" groupName="TabNav"  />
+					<s:RadioButton skinClass="th.co.tomato.themes.component.Navigator.WebNav" label="ของแถม" groupName="TabNav"  />
+					<s:RadioButton skinClass="th.co.tomato.themes.component.Navigator.WebNav" label="โปรโมชั่น" groupName="TabNav"  />
+				</s:HGroup>
+				<s:BorderContainer width="100%" height="100%" >
+					
+				</s:BorderContainer>
+			</s:Group>
+		</mx:Panel>
+		
+		
+		
+	</s:Group>
+	
+</main:IGroup>

@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.adobe.com/flex/spark"
+			   xmlns:d="http://ns.adobe.com/fxg/2008/dt"
+			   xmlns:fc="http://ns.adobe.com/flashcatalyst/2009"
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:components="components.*"
+			   xmlns:BtnListSelect="th.co.tomato.themes.component.BtnListSelect.*" 
+			   xmlns:MainClass="th.co.tomato.themes.component.MainClass.*" 
+			   xmlns:twostatebtn="th.co.tomato.themes.component.twostatebtn.*" 
+			   xmlns:searchtextinput="th.co.tomato.themes.component.searchtextinput.*" 
+			   xmlns:notification="th.co.tomato.themes.component.notification.*" 
+			   xmlns:leftmenu="th.co.tomato.themes.component.leftmenu.*" 
+			   xmlns:customtheme="th.co.tomato.themes.component.customtheme.*" 
+			   xmlns:sampleview="th.co.tomato.themes.component.sampleview.*" 
+			   xmlns:ColorBtn="th.co.tomato.themes.component.ColorBtn.*" 
+			   xmlns:avartarBtn="th.co.tomato.themes.component.avartarBtn.*" 
+			   width="100%" height="100%"  minHeight="400"
+			   >
+	<s:layout>
+		<s:VerticalLayout gap="0" />
+	</s:layout>
+	<fx:Style source="Main1.css"/>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.EffectEvent;
+			import mx.events.ResizeEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			import th.co.tomato.main.MainConfig;
+			import th.co.tomato.main.MenuConfig;
+			import th.co.tomato.themes.FlatTheme;
+			
+			[Bindable] private var colAwidth:Number = 50;
+			[Bindable] private var colBwidth:Number = 75;
+			[Bindable] private var rightboxRight:Object;
+			
+			
+			protected function twoBtn_clickHandler(event:MouseEvent):void
+			{
+				if(twoBtn.selected){
+					twoBtn.label = 'A';
+				} else {
+					twoBtn.label = 'B';
+				}
+				
+			}
+			
+			protected function twostatebtn1_clickHandler(event:MouseEvent):void
+			{
+				two2.change = !two2.change;
+				if(two2.change){
+					two2.label = 'B';
+				} else {
+					two2.label = 'A';
+				}
+				
+			}
+			
+			protected function searchtextinput1_TXTSEARCHHandler(event:Event):void
+			{
+				trace('btnSearch Click');
+			}
+			
+			protected function menuGroupWidth(event:MouseEvent):void
+			{
+					if( FlatTheme.menuIncludeinlayout) {
+						FlatTheme.menuIncludeinlayout = false;
+						MenuGroup.x = -MenuGroup.width;
+						FlatTheme.menux = -200;
+					} else {
+						FlatTheme.menuIncludeinlayout = true;
+						MenuGroup.x = 0;
+						FlatTheme.menux = 0;
+					}
+			}
+			
+			public function initMain():void
+			{
+					FlatTheme.v = true;
+					MainConfig.getInstance.mainSize = screen.height - 90;
+					trace(MainConfig.getInstance.mainSize);
+					mnuLeft.selectedIndex = 0;
+					if(MenuConfig.getInstance.MainG == null){
+						MenuConfig.getInstance.MainG = MainGroup;
+					}
+					MainGroup.removeAllElements();
+					
+			}
+			
+			private function setsize():void {
+			}
+			private var chk:Boolean = false;
+			
+			protected function list1_clickHandler(event:MouseEvent):void
+			{	
+					FlatTheme.selected = true;
+			}
+			
+			protected function list1_resizeHandler(event:ResizeEvent):void
+			{
+			}
+			
+			protected function rightBoxclickHandler(event:MouseEvent):void
+			{
+				if(rightBox.right == 0){
+					rightBox.right = -180;
+					rightContainer.right  =	-180;
+				} else {
+					rightBox.right = 0
+					rightContainer.right  =	0;
+				}
+			}
+			
+			protected function mv_effectEndHandler(event:EffectEvent):void
+			{
+				if (MenuGroup.x == 0 ){
+					spLeft.width = 200;
+				} else {
+					spLeft.width = 0;
+				}
+			}
+			
+			protected function mnuLeft_changeHandler(event:IndexChangeEvent):void
+			{
+				trace(mnuLeft.selectedItem.text1);
+				callLater(MenuSelect);				
+			}
+			
+			private function MenuSelect():void {
+				MenuConfig.getInstance.MainMenu = mnuLeft.selectedItem.text1 as String; 
+				mnuLeft.validateDisplayList();
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<s:ArrayCollection id="ac3">
+			<fx:Object name="a"  age = "1" email="a@abc.com" />
+			<fx:Object name="b"  age = "2" email="b@abc.com" />
+			<fx:Object name="c"  age = "3" email="c@abc.com" />
+			<fx:Object name="d"  age = "4" email="d@abc.com" />
+			<fx:Object name="e"  age = "5" email="e@abc.com" />
+			<fx:Object name="f"  age = "6" email="f@abc.com" />
+			<fx:Object name="g"  age = "7" email="g@abc.com" />
+			<fx:Object name="h"  age = "8" email="h@abc.com" />
+			<fx:Object name="i"  age = "9" email="i@abc.com" />
+		</s:ArrayCollection>
+		
+		<s:ArrayCollection id="ac2">
+			<fx:Object text1="a" text2="English"/>
+			<fx:Object text1="b" text2="Thai"/>
+			<fx:Object text1="c" text2="Chinese"/>
+			<fx:Object text1="d" text2="Japanese"/>
+		</s:ArrayCollection>
+		<s:ArrayCollection id="ac1">
+			<fx:String>Notifice 1</fx:String>
+			<fx:String>Notifice 2</fx:String>
+			<fx:String>Notifice 3</fx:String>
+			<fx:String>Notifice 4</fx:String>
+			<fx:String>Notifice 5</fx:String>
+			<fx:String>Notifice 6</fx:String>
+			<fx:String>Notifice 7</fx:String>
+			<fx:String>Notifice 8</fx:String>
+			<fx:String>Notifice 9</fx:String>
+			<fx:String>Notifice 10</fx:String>
+			<fx:String>Notifice 11</fx:String>
+		</s:ArrayCollection>
+		
+		<s:ArrayCollection id="acDetail">
+			<fx:Object label = "bbbb1" />
+			<fx:Object label = "bbbb2" />
+			<fx:Object label = "bbbb3" />
+			<fx:Object label = "bbbb4" />
+			<fx:Object label = "bbbb5" />
+			<fx:Object label = "bbbb6" />
+			<fx:Object label = "bbbb7" />
+			<fx:Object label = "bbbb8" />
+			<fx:Object label = "bbbb9" />
+			<fx:Object label = "bbbb0" />
+		</s:ArrayCollection>
+		
+		<s:ArrayCollection id="acmenuItem">
+			<fx:Object label = "สินค้าเข้า" image1="Z"   text1="สินค้าเข้า" hit="1" A="A"    children ="[]"	   />
+			<fx:Object label = "สินค้าออก" image1="X"   text1="สินค้าออก" hit="1" A="A"    children ="[]"	   />
+			<fx:Object label = "โอนย้ายระหว่างคลัง" image1="Y"   text1="โอนย้ายระหว่างคลัง" hit="1" A="A"    children ="[]"	   />
+			<fx:Object label = "ปรับปรุงย่อด" image1="W"   text1="ปรับปรุงย่อด" hit="1" A="A"    children ="[]"	   />
+			<fx:Object label = "เพิ่มสินค้า" image1="Q"   text1="เพิ่มสินค้า" hit="1" A="A"    children ="[]"	   />
+			<fx:Object label = "ลดสินค้า" image1="R"   text1="ลดสินค้า" hit="1" A="A"    children ="[]"	   />
+			
+		</s:ArrayCollection>
+		
+		<mx:Resize id="rsz"   />
+		<mx:Move id="mv"  duration="200"/>
+		<mx:Move id="mv2" duration="500"/>
+		<mx:Move id="mv1" effectEnd="mv_effectEndHandler(event)" />
+	</fx:Declarations>
+	<s:Group id="grpTop" width="100%" height="50">
+		<s:Rect top="0" left="0" right="0" bottom="0" >
+			<s:fill>
+				<s:SolidColor color="{FlatTheme.upColor}" />
+			</s:fill>
+		</s:Rect>
+	<s:HGroup width="100%" height="50" verticalAlign="middle" paddingRight="10" paddingLeft="0" gap="0" >
+		<s:HGroup horizontalAlign="center" verticalAlign="middle">
+			<s:Image width="100" height="50" source="assets/logo.png"/>
+			<s:Label text="{MainConfig.getInstance.appName}" color="0xFFFFFF" fontSize="20"  />
+			<s:HGroup height="100%" paddingLeft="-5" verticalAlign="bottom">
+			<s:RichText color="0xFFFFFF" fontSize="10" paddingBottom="10" paddingLeft="0"
+						text="{MainConfig.getInstance.version}"/>
+			</s:HGroup>
+		</s:HGroup>
+		<s:Group width="50" height="50">
+			<s:Button label="n" width="40" height="50" skinClass="th.co.tomato.themes.component.iconbtn.IconbtnSkin" click="menuGroupWidth(event)" />
+			<s:Spacer width="10" />
+		</s:Group>
+	
+		<s:List id="list1" width="100%" height="50" click="list1_clickHandler(event)"
+				 resizeEffect="{rsz}" minWidth="100" resize="list1_resizeHandler(event)"
+				skinClass="th.co.tomato.themes.component.topmenu.topDataListSkin" verticalScrollPolicy="auto"
+				>
+<!--			<s:ArrayCollection>
+				<fx:Object image1="B"
+						   text1="ซื้อ" hit="1" A="Main" 
+						   children ="{acmenuItem}"
+						   />
+				<fx:Object image1="A"
+						   text1="ขาย" hit="2" A="A" 
+						   children ="{acmenuItem}"
+						   />
+				<fx:Object image1="C"
+						   text1="การเงิน" hit="3" A="A"  
+						   children ="{acmenuItem}"
+						   />
+				<fx:Object image1="D"
+						   text1="สินค้า" hit="4" A="A"  
+						   children ="{acmenuItem}"
+						   />
+				<fx:Object image1="E"
+						   text1="รายงาน" hit="5" A="A" 
+						   children ="{acmenuItem}"
+						   />
+			</s:ArrayCollection>-->
+		</s:List>
+
+		<notification:NotifiBtn height="50" width="60" ac="{ac1}" />
+		<BtnListSelect:BtnSelectList d:userLabel="CustomComponent1" height="50" dataprovidor="{ac2}"
+									 iconText="A" SelectText="Test"/>
+		<ColorBtn:ColorThemCombobox iconText="N" SelectText="Test"/>
+		<avartarBtn:AvartarBtn id="customcomponent11" height="50" />
+	</s:HGroup>
+	</s:Group>
+	<s:Group width="100%" height="100%">
+		
+	<s:HGroup width="100%" height="100%" id="MiddleGroup" x="0"  gap="10">
+		<s:Spacer id="spLeft" width="200" />
+		<s:Group id="MainGroup" width="100%" height="100%" moveEffect="mv" y="0" x="0">
+			<s:layout>
+				<s:VerticalLayout paddingLeft="5" paddingRight="30" paddingTop="5" paddingBottom="5" />
+			</s:layout>
+			<sampleview:Tview  width="100%" height="100%" />
+		</s:Group>
+	</s:HGroup>
+		
+		
+	<s:HGroup id="grpMenu" width="100%" height="100%" gap="10">
+		<s:Group width="200" height="100%" id="MenuGroup"  moveEffect="mv1">
+		<s:Rect width="100%" height="100%"  >
+			<s:fill>
+				<s:SolidColor color="{FlatTheme.disableColor}" />
+			</s:fill>
+		</s:Rect>
+		<s:VGroup width="100%" height="100%" gap="0" paddingTop="5" horizontalAlign="center" id="menuItemGroup" x="0"  
+				  includeInLayout="{FlatTheme.menuIncludeinlayout}" >
+			<searchtextinput:SearchTextinput prompt="Search hear..." includeInLayout="{FlatTheme.menuIncludeinlayout}" 
+											 skinClass="th.co.tomato.themes.component.searchtextinput.SearchTextInputSkin" />
+			 <s:Spacer height="5" />
+			 <s:List id="mnuLeft" width="100%"
+					includeInLayout="{FlatTheme.menuIncludeinlayout}" 
+					height="100%" resizeEffect="{rsz}"
+					skinClass="th.co.tomato.themes.component.leftmenu.lefMainMenuDataListSkin"
+					click="list1_clickHandler(event)"
+					change="mnuLeft_changeHandler(event)"
+					verticalScrollPolicy="auto" >
+				<s:layout>
+					<s:VerticalLayout gap="0">
+					</s:VerticalLayout>
+				</s:layout>
+				<s:ArrayCollection>
+					<fx:Object image1="B"
+							   text1="{MenuConfig.getInstance.PROJECT}" hit="1" A="Main" 
+							   children ="[]"
+							   />
+					<fx:Object image1="A"
+							   text1="{MenuConfig.getInstance.CUSTOMER}" hit="2" A="A" 
+							   children ="[]"
+							   />
+					<fx:Object image1="D"
+							   text1="{MenuConfig.getInstance.MAIL}" hit="4" A="A"  
+							   children ="[]"
+							   />
+					<fx:Object image1="C"
+							   text1="{MenuConfig.getInstance.SETTING}" hit="3" A="A"  
+							   children ="[]"
+							   />
+					<fx:Object image1="F"
+							   text1="{MenuConfig.getInstance.ADMIN}" hit="5" A="A" 
+							   children ="[]"
+							   />
+<!--							   children ="{acmenuItem}"-->
+				</s:ArrayCollection>
+			</s:List>
+			</s:VGroup>
+		</s:Group>
+
+	</s:HGroup>
+	<s:Group id="grpRight" y="0" right="0" width="200" height="100%">
+		<s:Group width="200"  right="-180" top="0" bottom="0"   moveEffect="mv2"  id="rightBox"  click="rightBoxclickHandler(event)">
+			<s:Rect right="0" top="0" left="0" bottom="0" >
+				<s:fill>
+					<s:SolidColor color="0xFFFFFF" />
+				</s:fill>
+				<s:stroke>
+					<s:SolidColorStroke color="{FlatTheme.upColor}"  /> 
+				</s:stroke>
+			</s:Rect>
+		</s:Group>
+		<s:VGroup width="180" height="100%" moveEffect="mv2" right="-180" top="0" id="rightContainer">
+			<s:Button label="test" />
+			<s:CheckBox label="CheckBox"/>
+			<mx:ColorPicker/>
+			<s:ComboBox/>
+			<mx:DateChooser/>
+			<mx:DateField/>
+			<s:DropDownList></s:DropDownList>
+		</s:VGroup>
+	</s:Group>
+</s:Group>	
+	<s:Group width="100%" height="30" >
+		<s:Rect width="100%" height="100%">
+			<s:fill>
+				<s:SolidColor color="{FlatTheme.upColor}" />
+			</s:fill>
+		</s:Rect>
+		<s:HGroup width="100%" height="30" >
+			<MainClass:TwostateBtn skinClass="th.co.tomato.themes.component.twostatebtn.TwoStateBtnSkin" label="A" click="twostatebtn1_clickHandler(event)" id="two2" />
+			<s:Button label="A" skinClass="th.co.tomato.themes.component.QuadrateIconBtn.QuadrateIconBtnSkin"  />
+			<s:Button label="B" skinClass="th.co.tomato.themes.component.RotateBtn.RotateBtnSkin" height="30" width="30" />
+			<s:ToggleButton skinClass="th.co.tomato.themes.component.ToggleButtonBtn.ToggleButtonIconSkin" id="twoBtn" click="twoBtn_clickHandler(event)" label="A"/>	  
+			<s:ComboBox x="540" y="114" dataProvider="{ac3}" labelField="name"
+						skinClass="th.co.tomato.themes.component.Combobox.FlatComboboxskin"/>
+		</s:HGroup>
+	</s:Group>
+</s:Group>

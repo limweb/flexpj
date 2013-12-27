@@ -1,0 +1,1593 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Main.css</title>
+<link rel="stylesheet" type="text/css" href="../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="CSSComment">/*Spark Namespace*/</span>
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">s </span><span class="CSSString">"library://ns.adobe.com/flex/spark"</span>;
+
+<span class="CSSComment">/*Halo Namespace*/</span>
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">mx </span><span class="CSSString">"library://ns.adobe.com/flex/mx"</span>;
+
+<span class="CSSComment">/*
+//------------------------------
+//  Global
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">global
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyFontCFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontSize</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">18</span><span class="CSSDelimiters">;</span>
+    <span class="CSSComment">/*    font-size:                             11pt;
+    fontFamily:                         "Arial";*/</span>
+    <span class="CSSProperty_Name">rollOverColor</span><span class="CSSDelimiters">:</span>                        <span class="CSSProperty_Value">#CCCCCC</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                    <span class="CSSProperty_Value">#CCCCCC</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textSelectedColor</span><span class="CSSDelimiters">:</span>                    <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">focus-color</span><span class="CSSDelimiters">:</span>                        <span class="CSSProperty_Value">#4B6F9E</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selection-color</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#D1E5F2</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+
+<span class="CSSComment">/* StyleableTextField, regular */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/tahoma.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSString">"MyFont"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">false</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* StyleableTextField, bold */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/tahomabd.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSString">"MyFont"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">false</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* Label, regular */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/Thonburi.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSString">"MyFontCFF"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* Label, bold */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/ThonburiBold.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSString">"MyFontCFF"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* SYMBOL ICON FONT */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/Entypo-webfont.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Entypo</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span> 
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/WebSymbols-Regular-webfont.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">WebSymbols</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span> 
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSS@font-face">@font-face</span>
+<span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">myiconfont</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"C:\Windows\Fonts\myiconfont.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">s|ToggleButton </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.skins.ArrowButtonSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+<span class="CSSSelector">s|List </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.skins.ObjTreeListSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">s|Scroller </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.component.SlimScroller.FlexScrollerSkin"</span><span class="CSSProperty_Value">)
+</span><span class="CSSDelimiters">}</span>
+
+
+
+<span class="CSSSelector">.Call_Symbols </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Entypo</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">normal</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">35</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">paddingLeft</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">5</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSSelector">mx|ScrollControlBase
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">borderSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.BorderSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">mx|Container
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">borderSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.BorderSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">mx|Accordion
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">borderSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.BorderSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo AccordionHeader
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|AccordionHeader
+</span><span class="CSSDelimiters">{</span>
+
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/AccordionHeader_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"20"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"145"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/AccordionHeader_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"20"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"145"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/AccordionHeader_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"20"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"145"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/AccordionHeader_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"20"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"145"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/AccordionHeader_selectedOverSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"20"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"145"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/AccordionHeader_selectedDownSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"20"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"145"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/AccordionHeader_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"20"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"145"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">text-indent</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">8</span><span class="CSSDelimiters">;</span>                                          
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Halo Alert
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|Alert
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">titleBackgroundSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_titleBackgroundSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"264"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"18"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonDisabledSkin</span><span class="CSSDelimiters">:</span>             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonDownSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonOverSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">backgroundColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#6F797F</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">controlBarStyleName</span><span class="CSSDelimiters">:</span>                 <span class="CSSString">"controlBarStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">button-style-name</span><span class="CSSDelimiters">:</span>                    <span class="CSSString">"alertButtonStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">headerHeight</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">32</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">padding-top</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">18</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">padding-left</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">10</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">padding-right</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">10</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">padding-bottom</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">4</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyFont</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontSize</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">14</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">backgroundAlpha</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">1</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderAlpha</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">0.6</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderColor</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#30A7CF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">dropShadowEnabled</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">false</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.alertButtonStyle
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#D3E7F3</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textSelectedColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo Application
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|Application
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">content-background-color</span><span class="CSSDelimiters">:</span>            <span class="CSSProperty_Value">#666666</span><span class="CSSDelimiters">;</span>    
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo Button
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|Button
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Button_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"59"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Button_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"59"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Button_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"59"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Button_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"59"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Button_selectedDisabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"59"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Button_selectedDownSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"59"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Button_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"59"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Button_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"59"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#D3E7F3</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textSelectedColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">focus-rounded-corners</span><span class="CSSDelimiters">:</span> <span class="CSSString">"tl, tr, br, bl"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">4</span><span class="CSSDelimiters">;</span>            
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/* 
+//------------------------------ 
+//  Halo ButtonBar 
+//------------------------------ 
+*/</span> 
+
+<span class="CSSSelector">mx|ButtonBar 
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">buttonStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"buttonBarButton"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">firstButtonStyleName</span><span class="CSSDelimiters">:</span>                 <span class="CSSString">"buttonBarFirstButton"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">lastButtonStyleName</span><span class="CSSDelimiters">:</span>                 <span class="CSSString">"buttonBarLastButton"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">horizontal-gap</span><span class="CSSDelimiters">:</span>                        <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+<span class="CSSSelector">.buttonBarButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-button_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"32"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-button_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"32"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-button_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"32"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-button_selectedDisabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"32"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-button_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"32"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-button_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"32"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-button_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"32"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-button_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"32"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+<span class="CSSSelector">.buttonBarFirstButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-firstButton_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-firstButton_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-firstButton_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-firstButton_selectedDisabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-firstButton_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-firstButton_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-firstButton_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-firstButton_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+<span class="CSSSelector">.buttonBarLastButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-lastButton_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-lastButton_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-lastButton_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-lastButton_selectedDisabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-lastButton_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-lastButton_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-lastButton_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ButtonBar-lastButton_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"34"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo Canvas
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|Canvas
+</span><span class="CSSDelimiters">{</span>
+
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo CheckBox
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|CheckBox
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledIcon</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CheckBox_disabledIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CheckBox_downIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CheckBox_overIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CheckBox_upIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDisabledIcon</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CheckBox_selectedDisabledIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDownIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CheckBox_selectedDownIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedOverIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CheckBox_selectedOverIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedUpIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CheckBox_selectedUpIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textSelectedColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">focus-rounded-corners</span><span class="CSSDelimiters">:</span> <span class="CSSString">"tl, tr, br, bl"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">4</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo ColorPicker
+//------------------------------
+*/</span>
+<span class="CSSComment">/*mx|ColorPicker
+{
+    disabledSkin:                         Embed(source="assets/themes/ColorPicker_disabledSkin.png");
+    downSkin:                             Embed(source="assets/themes/ColorPicker_downSkin.png");
+    overSkin:                             Embed(source="assets/themes/ColorPicker_overSkin.png");
+    upSkin:                             Embed(source="assets/themes/ColorPicker_upSkin.png");
+    color:                                 #333333;
+    content-background-color: #FFFFFF;
+}*/</span>
+<span class="CSSComment">/*
+//------------------------------
+//  Halo ComboBox
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|ComboBox
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ComboBox_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ComboBox_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">editableDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ComboBox_editableDisabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"4"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"1"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">editableDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ComboBox_editableDownSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"4"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"1"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">editableOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ComboBox_editableOverSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"4"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"1"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">editableUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ComboBox_editableUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"4"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"1"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ComboBox_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ComboBox_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">normal</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">dropDownStyleName</span><span class="CSSDelimiters">:</span>                    <span class="CSSString">"dropDownStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">paddingTop</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">1</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">paddingBottom</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">-1</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                <span class="CSSProperty_Value">#D1E5F2</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">text-input-style-name</span><span class="CSSDelimiters">:</span>                 <span class="CSSString">"textInputStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">focus-rounded-corners</span><span class="CSSDelimiters">:</span> <span class="CSSString">"tr, tl, br, bl"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">4</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.dropDownStyle
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>    
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.textInputStyle
+</span><span class="CSSDelimiters">{</span>    
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#D1E5F2</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">content-background-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#4b6f9e</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo CursorManager
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|CursorManager
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">busyCursor</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/CursorManager_busyCursor.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo DataGrid
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|DataGrid
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">columnDropIndicatorSkin</span><span class="CSSDelimiters">:</span>             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DataGrid_columnDropIndicatorSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">columnResizeSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DataGrid_columnResizeSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">headerBackgroundSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DataGrid_headerBackgroundSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"90"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">headerSeparatorSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DataGrid_headerSeparatorSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">sortArrowSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DataGrid_sortArrowSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">stretchCursor</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DataGrid_stretchCursor.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">text-roll-over-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo DateChooser
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|DateChooser
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">nextMonthDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_nextMonthDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">nextMonthDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_nextMonthDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">nextMonthOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_nextMonthOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">nextMonthUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_nextMonthUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">nextYearDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_nextYearDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">nextYearDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_nextYearDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">nextYearOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_nextYearOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">nextYearUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_nextYearUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">prevMonthDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_prevMonthDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">prevMonthDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_prevMonthDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">prevMonthOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_prevMonthOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">prevMonthUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_prevMonthUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">prevYearDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_prevYearDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">prevYearDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_prevYearDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">prevYearOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_prevYearOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">prevYearUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_prevYearUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">rollOverIndicatorSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_rollOverIndicatorSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectionIndicatorSkin</span><span class="CSSDelimiters">:</span>             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_selectionIndicatorSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">todayIndicatorSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateChooser_todayIndicatorSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">headerStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"dateChooserHeader"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                    <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textSelectedColor</span><span class="CSSDelimiters">:</span>                    <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">weekDayStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"dateChooserWeekDay"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">todayStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"dateChooserToday"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">contentBackgroundColor</span><span class="CSSDelimiters">:</span>             <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.dateChooserHeader
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span>                        <span class="CSSProperty_Value">3</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">content-background-color</span><span class="CSSDelimiters">:</span>             <span class="CSSProperty_Value">#4B6F9E, #4B6F9E</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.dateChooserWeekDay
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+<span class="CSSSelector">.dateChooserToday
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo DateField
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|DateField
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateField_disabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateField_downSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateField_overSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DateField_upSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo DividedBox
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|DividedBox
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">dividerSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DividedBox_dividerSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">horizontalCursor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DividedBox_horizontalCursor.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">verticalCursor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DividedBox_verticalCursor.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo DragManager
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|DragManager
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">copyCursor</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DragManager_copyCursor.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">defaultDragImageSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DragManager_defaultDragImageSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">linkCursor</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DragManager_linkCursor.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">moveCursor</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DragManager_moveCursor.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">rejectCursor</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/DragManager_rejectCursor.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo FormItem
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|FormItem
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">indicatorSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/FormItem_indicatorSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Halo HScrollBar
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|HScrollBar
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">downArrowDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollArrowLeft_disabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_downArrowDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_downArrowOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_downArrowUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_thumbDownSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"10"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_thumbIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_thumbOverSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"10"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_thumbUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"10"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackDisabledSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_trackDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_trackSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollArrowRight_disabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_upArrowDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_upArrowOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/HScrollBar_upArrowUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Halo HSlider
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|HSlider
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">thumbDisabledSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackHighlightSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_trackHighlightSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_trackSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo LinkButton
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|LinkButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/LinkButton_disabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/LinkButton_downSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/LinkButton_overSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/LinkButton_upSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textSelectedColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">focus-rounded-corners</span><span class="CSSDelimiters">:</span> <span class="CSSString">"tl, tr, br, bl"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">4</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>        
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo List
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|List
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">text-roll-over-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo Menu
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|Menu
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">branchDisabledIcon</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Menu_branchDisabledIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">branchIcon</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Menu_branchIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">checkDisabledIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Menu_checkDisabledIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">checkIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Menu_checkIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">radioDisabledIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Menu_radioDisabledIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">radioIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Menu_radioIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">separatorSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Menu_separatorSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo MenuBar
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|MenuBar
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">backgroundSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/MenuBar_backgroundSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"90"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">itemDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/MenuBar_itemDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">itemOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/MenuBar_itemOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">itemUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/MenuBar_itemUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                    <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textSelectedColor</span><span class="CSSDelimiters">:</span>                    <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo NumericStepper
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|NumericStepper
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">downArrowDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/NumericStepper_downArrowDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/NumericStepper_downArrowDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/NumericStepper_downArrowOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/NumericStepper_downArrowUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/NumericStepper_upArrowDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/NumericStepper_upArrowDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/NumericStepper_upArrowOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/NumericStepper_upArrowUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">focus-rounded-corners</span><span class="CSSDelimiters">:</span> <span class="CSSString">"tr br"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">4</span><span class="CSSDelimiters">;</span>
+    
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo Panel
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|Panel
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">borderSkin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.PanelBorderSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">titleBackgroundSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_titleBackgroundSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"264"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"18"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonDisabledSkin</span><span class="CSSDelimiters">:</span>             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonDownSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonOverSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">titleStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"titleStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">backgroundColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">controlBarStyleName</span><span class="CSSDelimiters">:</span>                 <span class="CSSString">"controlBarStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">headerHeight</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">32</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo PopUpButton
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|PopUpButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">popUpDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_popUpDownSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">popUpOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_popUpOverSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">focus-rounded-corners</span><span class="CSSDelimiters">:</span> <span class="CSSString">"tl, tr, br, bl"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">4</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  PopUpMenuButton
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|PopUpMenuButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">popUpDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_popUpDownSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">popUpOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_popUpOverSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/PopUpButton_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"64"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">focus-rounded-corners</span><span class="CSSDelimiters">:</span> <span class="CSSString">"tl, tr, br, bl"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">4</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo ProgressBar
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|ProgressBar
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">barSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ProgressBar_barSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">indeterminateSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ProgressBar_indeterminateSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ProgressBar_trackSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"1"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"4"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"146"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"3"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo RadioButton
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|RadioButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledIcon</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/RadioButton_disabledIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/RadioButton_downIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/RadioButton_overIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDisabledIcon</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/RadioButton_selectedDisabledIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDownIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/RadioButton_selectedDownIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedOverIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/RadioButton_selectedOverIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedUpIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/RadioButton_selectedUpIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/RadioButton_upIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textSelectedColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  SWFLoader
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|SWFLoader
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">brokenImageSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/SWFLoader_brokenImageSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo ScrollBar
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|VScrollBar
+</span><span class="CSSDelimiters">{</span>
+
+    <span class="CSSProperty_Name">downArrowDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_downArrowDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_downArrowDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_downArrowOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_downArrowUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_thumbIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_thumbDownSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"10"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_thumbOverSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"10"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_thumbUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"25"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackDisabledSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_trackDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_trackSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_upArrowDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_upArrowDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_upArrowOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_upArrowUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo Slider
+//------------------------------
+*/</span>
+
+
+
+<span class="CSSSelector">mx|VSlider
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">thumbDisabledSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackHighlightSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_trackHighlightSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_trackSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo Tab
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|TabBar
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">tabStyleName</span><span class="CSSDelimiters">:</span>                         <span class="CSSString">"tabBarTab"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">firstTabStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"tabBarTab"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">lastTabStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"tabBarTab"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">buttonStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"tabBarTab"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedTabTextStyleName</span><span class="CSSDelimiters">:</span>             <span class="CSSString">"selectedTabTextStyle"</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.tabBarTab
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">disabledSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/TabBar-tab_disabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"46"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/TabBar-tab_downSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"46"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">overSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/TabBar-tab_overSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"46"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/TabBar-tab_selectedDisabledSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"46"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/TabBar-tab_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"46"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selectedUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/TabBar-tab_selectedUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"46"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/TabBar-tab_upSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"5"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"46"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.selectedTabTextStyle
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">textRollOverColor</span><span class="CSSDelimiters">:</span>                    <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>    
+<span class="CSSDelimiters">}</span>
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Halo TabNavigator
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|TabNavigator
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">padding-top</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">border-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#999999</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.myTabNavigatorText
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">normal</span><span class="CSSDelimiters">;</span>    
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">11</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo TextArea
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|TextArea
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+ 
+<span class="CSSComment">/*
+//------------------------------
+//  Halo TextInput
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|TextInput
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo TileList
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|TileList
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">content-background-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>    
+    <span class="CSSProperty_Name">border-style</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">inset</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">border-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#000000</span><span class="CSSDelimiters">;</span>
+
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo TitleWindow
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|TitleWindow
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">titleBackgroundSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_titleBackgroundSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"264"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"18"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonDisabledSkin</span><span class="CSSDelimiters">:</span>             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonDownSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonOverSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">closeButtonUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_closeButtonUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">titleStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"titleStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">backgroundColor</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">#6F797F</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">controlBarStyleName</span><span class="CSSDelimiters">:</span>                 <span class="CSSString">"controlBarStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">headerHeight</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">32</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+<span class="CSSSelector">.titleStyle
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                 <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span>                        <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.controlBarStyle
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">background-image</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Panel_controlBarBackgroundSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"264"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"15"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">background-size</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"100%"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">border-style</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">none</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Halo ToggleButtonBar
+//
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|ToggleButtonBar 
+</span><span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">buttonStyleName</span><span class="CSSDelimiters">:</span> <span class="CSSString">"buttonBarButton"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">firstButtonStyleName</span><span class="CSSDelimiters">:</span> <span class="CSSString">"buttonBarFirstButton"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">lastButtonStyleName</span><span class="CSSDelimiters">:</span> <span class="CSSString">"buttonBarLastButton"</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo ToolTip
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|ToolTip
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">borderSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/ToolTip_borderSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"6"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"74"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"17"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span>                                <span class="CSSProperty_Value">#ffffff</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Halo Tree
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|Tree
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">defaultLeafIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Tree_defaultLeafIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">disclosureClosedIcon</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Tree_disclosureClosedIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">disclosureOpenIcon</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Tree_disclosureOpenIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">folderClosedIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Tree_folderClosedIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">folderOpenIcon</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Tree_folderOpenIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Halo VScrollBar
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">mx|VScrollBar
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">downArrowDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_downArrowDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_downArrowDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_downArrowOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">downArrowUpSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_downArrowUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbIcon</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_thumbIcon.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_thumbDownSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"10"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_thumbOverSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"10"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_thumbUpSkin.png"</span><span class="CSSProperty_Value">,
+                                              scaleGridTop=</span><span class="CSSString">"25"</span><span class="CSSProperty_Value">,
+                                              scaleGridLeft=</span><span class="CSSString">"7"</span><span class="CSSProperty_Value">,
+                                              scaleGridRight=</span><span class="CSSString">"8"</span><span class="CSSProperty_Value">,
+                                              scaleGridBottom=</span><span class="CSSString">"42"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackDisabledSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_trackDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_trackSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDisabledSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_upArrowDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowDownSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_upArrowDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowOverSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_upArrowOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">upArrowUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/VScrollBar_upArrowUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  **Halo VSlider
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">mx|VSlider
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">thumbDisabledSkin</span><span class="CSSDelimiters">:</span>                     <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbDisabledSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbDownSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbDownSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbOverSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbOverSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">thumbUpSkin</span><span class="CSSDelimiters">:</span>                         <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_thumbUpSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackHighlightSkin</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_trackHighlightSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">trackSkin</span><span class="CSSDelimiters">:</span>                             <span class="CSSProperty_Value">Embed(source=</span><span class="CSSString">"assets/themes/Slider_trackSkin.png"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+
+<span class="CSSComment">/*
+//==========================================================================================================================
+//
+//                             ************************ Spark Skins ************************
+//
+//==========================================================================================================================
+*/</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// ** Spark Application
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|Application
+</span><span class="CSSDelimiters">{</span>
+
+<span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.ApplicationSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Spark Button
+//
+//------------------------------
+*/</span>
+
+<span class="CSSComment">/*s|Button
+{
+    skinClass: ClassReference("th.co.tomato.themes.mainSkins.ButtonSkin");
+    color: #FFFFFF;
+} */</span>
+
+<span class="CSSSelector">s|Button.emphasized
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.DefaultButtonSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* 
+//------------------------------ 
+//  **Spark ButtonBar 
+//------------------------------ 
+*/</span> 
+
+<span class="CSSSelector">s|ButtonBar
+</span><span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.ButtonBarSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Spark CheckBox
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|CheckBox
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.CheckBoxSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Spark ComboBox
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|ComboBox
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.ComboBoxSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">dropdown-style-name</span><span class="CSSDelimiters">:</span> <span class="CSSString">"comboBoxDropDown"</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.comboBoxDropDownStyle
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">drop-shadow-visible</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  **Spark DropDown
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|DropDownList
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.DropDownListSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Spark HScrollBar
+//
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">s|HScrollBar
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.HScrollBarSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>                            
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Spark HSlider
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|HSlider
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.HSliderSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span> 
+
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Spark List
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|List
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span>    <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.ListSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>    
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">roll-over-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#cccccc</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">selected-fill-colors</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#4B6F9E</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">content-background-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#ffffff</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  Spark NumericStepper
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|NumericStepper
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span>    <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.NumericStepperSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>                    
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  ** Spark Panel
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|Panel
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span>    <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.PanelSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderThicknessTop</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderThicknessBottom</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderThicknessLeft</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderThicknessRight</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">titleStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"titleStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">controlBarStyleName</span><span class="CSSDelimiters">:</span>                 <span class="CSSString">"controlBarStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">10pt</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.titleStyle </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">10pt</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">s|TitleWindow </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span>    <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.TitleWindowSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderThicknessTop</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderThicknessBottom</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderThicknessLeft</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderThicknessRight</span><span class="CSSDelimiters">:</span>                 <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">titleStyleName</span><span class="CSSDelimiters">:</span>                     <span class="CSSString">"titleStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">controlBarStyleName</span><span class="CSSDelimiters">:</span>                 <span class="CSSString">"controlBarStyle"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">10pt</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Spark RadioButton
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|RadioButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.mainSkins.RadioButtonSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  Spark Spinner
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|Spinner
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.SpinnerSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>                            
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  Spark TabBar
+//
+//------------------------------
+*/</span>
+
+<span class="CSSSelector">s|TabBar
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.TabBarSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>            
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  Spark TextArea
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|TextArea
+</span><span class="CSSDelimiters">{</span>        
+        <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+        <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.TextAreaSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+        <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  Spark TextInput
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|TextInput
+</span><span class="CSSDelimiters">{</span>
+        <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.TextInputSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>    
+        <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#333333</span><span class="CSSDelimiters">;</span>
+        <span class="CSSProperty_Name">corner-radius</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">0</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  Spark ToggleButton
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|ToggleButton
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.ToggleButtonSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>                            
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//
+//  Spark VideoPlayer
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|VideoPlayer
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.VideoPlayerSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">symbol-color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#D1E5F2</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+//------------------------------
+//  Spark VScrollBar
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|VScrollBar
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.VScrollBarSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>                            
+<span class="CSSDelimiters">}</span>  
+
+<span class="CSSComment">/*
+//------------------------------
+//
+// **Spark VSlider
+//
+//------------------------------
+*/</span>
+<span class="CSSSelector">s|VSlider
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">'th.co.tomato.themes.mainSkins.VSliderSkin'</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span> 
+
+</pre></body>
+</html>
