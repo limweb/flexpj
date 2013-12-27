@@ -1,0 +1,1264 @@
+
+<model xmlns="http://ns.adobe.com/Fiber/1.0">
+  <annotation name="ActionScriptGeneration">
+    <item name="FullyQualifyReferences">true</item>
+  </annotation>
+  <service name="TestcountService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">TestcountService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.testcountservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">TestcountService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/TestcountService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\MailSRV-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/TestcountService.php</item>
+      <item name="LINKED_FILE">TestcountService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">TestcountService</item>
+    </annotation>
+    <function name="getAllTestcount" return-type="Testcount[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getTestcountByID" return-type="Testcount">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="createTestcount" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Testcount"/>
+    </function>
+    <function name="updateTestcount" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="Testcount"/>
+    </function>
+    <function name="deleteTestcount" return-type="void">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="integer"/>
+    </function>
+    <function name="count" return-type="integer">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getTestcount_paged" return-type="Testcount[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="integer"/>
+      <parameter name="numItems" type="integer"/>
+    </function>
+  </service>
+  <entity name="Testcount" persistent="true">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Testcount</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">TestcountService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="DataManagement">
+      <item name="create">createTestcount</item>
+      <item name="update">updateTestcount</item>
+      <item name="get">getTestcountByID</item>
+      <item name="delete">deleteTestcount</item>
+      <item name="fillFunc">getAllTestcount,getTestcount_paged</item>
+      <item name="managingService">TestcountService</item>
+    </annotation>
+    <annotation name="getTestcountByID">
+      <item name="propertySpecifier">id,picname,counts</item>
+    </annotation>
+    <annotation name="getAllTestcount">
+      <item name="propertySpecifier">id,picname,counts</item>
+    </annotation>
+    <annotation name="getTestcount_paged">
+      <item name="propertySpecifier">id,picname,counts</item>
+      <item name="pagingEnabled">true</item>
+      <item name="positionalPagingParameters">true</item>
+      <item name="countOperation">count</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <id name="id" type="integer"/>
+    <property name="picname" type="string"/>
+    <property name="counts" type="integer"/>
+  </entity>
+  <service name="CustomersService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">CustomersService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.customersservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">CustomersService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/CustomersService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/MailSRV-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/CustomersService.php</item>
+      <item name="LINKED_FILE">CustomersService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">CustomersService</item>
+    </annotation>
+    <function name="getAllCustomers" return-type="Customers[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">modifydate,zipcode,state,modifyby,address1,address2,cusid,createdby,createddate,country,mobilephone,email,contactname,cusname,telephone</item>
+      </annotation>
+    </function>
+    <function name="getCustomersByID" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="deleteCustomers" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="createCustomers" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="updateCustomers" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="count" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getCustomers_paged" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="opaque"/>
+      <parameter name="numItems" type="opaque"/>
+    </function>
+  </service>
+  <entity name="Customers">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Customers</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Customers</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">CustomersService</item>
+    </annotation>
+    <annotation name="getAllCustomers">
+      <item name="propertySpecifier">modifydate,zipcode,state,modifyby,address1,address2,cusid,createdby,createddate,country,mobilephone,email,contactname,cusname,telephone</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="modifydate" type="string" required="true"/>
+    <property name="zipcode" type="string" required="true"/>
+    <property name="state" type="string" required="true"/>
+    <property name="modifyby" type="string" required="true"/>
+    <property name="address1" type="string" required="true"/>
+    <property name="address2" type="string" required="true"/>
+    <property name="cusid" type="string" required="true"/>
+    <property name="createdby" type="string" required="true"/>
+    <property name="createddate" type="string" required="true"/>
+    <property name="country" type="string" required="true"/>
+    <property name="mobilephone" type="string" required="true"/>
+    <property name="email" type="string" required="true"/>
+    <property name="contactname" type="string" required="true"/>
+    <property name="cusname" type="string" required="true"/>
+    <property name="telephone" type="string" required="true"/>
+  </entity>
+  <service name="MailgroupService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">MailgroupService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.mailgroupservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">MailgroupService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/MailgroupService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/MailSRV-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/MailgroupService.php</item>
+      <item name="LINKED_FILE">MailgroupService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">MailgroupService</item>
+    </annotation>
+    <function name="getAllMailgroup" return-type="Mailgroup[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">modifydate,sp,status,description,gname,gid,modifyby,createddate,createdby</item>
+      </annotation>
+    </function>
+    <function name="getMailgroupByID" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="deleteMailgroup" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="createMailgroup" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="updateMailgroup" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="count" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getMailgroup_paged" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="opaque"/>
+      <parameter name="numItems" type="opaque"/>
+    </function>
+  </service>
+  <entity name="Mailgroup">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Mailgroup</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Mailgroup</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">MailgroupService</item>
+    </annotation>
+    <annotation name="getAllMailgroup">
+      <item name="propertySpecifier">modifydate,sp,status,description,gname,gid,modifyby,createddate,createdby</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="modifydate" type="string" required="true"/>
+    <property name="sp" type="string" required="true"/>
+    <property name="status" type="string" required="true"/>
+    <property name="description" type="string" required="true"/>
+    <property name="gname" type="string" required="true"/>
+    <property name="gid" type="string" required="true"/>
+    <property name="modifyby" type="string" required="true"/>
+    <property name="createddate" type="string" required="true"/>
+    <property name="createdby" type="string" required="true"/>
+  </entity>
+  <service name="MailserverService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">MailserverService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.mailserverservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">MailserverService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/MailserverService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/MailSRV-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/MailserverService.php</item>
+      <item name="LINKED_FILE">MailserverService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">MailserverService</item>
+    </annotation>
+    <function name="getAllMailserver" return-type="Mailserver[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">modifydate,timedelay,username,hostid,portid,modifyby,createddate,createdby,debug,password,auth</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getMailserverByID" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="deleteMailserver" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="createMailserver" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="updateMailserver" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="count" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getMailserver_paged" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="opaque"/>
+      <parameter name="numItems" type="opaque"/>
+    </function>
+  </service>
+  <entity name="Mailserver">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Mailserver</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Mailserver</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">MailserverService</item>
+    </annotation>
+    <annotation name="getAllMailserver">
+      <item name="propertySpecifier">modifydate,timedelay,username,hostid,portid,modifyby,createddate,createdby,debug,password,auth</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="modifydate" type="string" required="true"/>
+    <property name="timedelay" type="string" required="true"/>
+    <property name="username" type="string" required="true"/>
+    <property name="hostid" type="string" required="true"/>
+    <property name="portid" type="string" required="true"/>
+    <property name="modifyby" type="string" required="true"/>
+    <property name="createddate" type="string" required="true"/>
+    <property name="createdby" type="string" required="true"/>
+    <property name="debug" type="string" required="true"/>
+    <property name="password" type="string" required="true"/>
+    <property name="auth" type="string" required="true"/>
+  </entity>
+  <service name="PjreplayautomailService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">PjreplayautomailService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.pjreplayautomailservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">PjreplayautomailService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/PjreplayautomailService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/MailSRV-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/PjreplayautomailService.php</item>
+      <item name="LINKED_FILE">PjreplayautomailService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">PjreplayautomailService</item>
+    </annotation>
+    <function name="getAllPjreplayautomail" return-type="Pjreplayautomail[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">count,replayemail,pjid</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getPjreplayautomailByID" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="pjid" type="opaque"/>
+      <parameter name="replayemail" type="opaque"/>
+    </function>
+    <function name="deletePjreplayautomail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="pjid" type="opaque"/>
+      <parameter name="replayemail" type="opaque"/>
+    </function>
+    <function name="createPjreplayautomail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="updatePjreplayautomail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="count" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getPjreplayautomail_paged" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="opaque"/>
+      <parameter name="numItems" type="opaque"/>
+    </function>
+  </service>
+  <service name="PjreplaymailService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">PjreplaymailService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.pjreplaymailservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">PjreplaymailService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/PjreplaymailService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/MailSRV-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/PjreplaymailService.php</item>
+      <item name="LINKED_FILE">PjreplaymailService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">PjreplaymailService</item>
+    </annotation>
+    <function name="getAllPjreplaymail" return-type="Pjreplayautomail[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">count,replayemail,pjid</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getPjreplaymailByID" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="pjid" type="opaque"/>
+      <parameter name="replayemail" type="opaque"/>
+    </function>
+    <function name="deletePjreplaymail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="pjid" type="opaque"/>
+      <parameter name="replayemail" type="opaque"/>
+    </function>
+    <function name="createPjreplaymail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="updatePjreplaymail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="count" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getPjreplaymail_paged" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="opaque"/>
+      <parameter name="numItems" type="opaque"/>
+    </function>
+  </service>
+  <entity name="Pjreplayautomail">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Pjreplayautomail</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Pjreplayautomail</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">PjreplayautomailService,PjreplayautomailServiceDummy,PjreplaymailService</item>
+    </annotation>
+    <annotation name="getAllPjreplayautomail">
+      <item name="propertySpecifier">count,replayemail,pjid</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <annotation name="getAllPjreplaymail">
+      <item name="propertySpecifier">count,replayemail,pjid</item>
+    </annotation>
+    <property name="count" type="string" required="true"/>
+    <property name="replayemail" type="string" required="true"/>
+    <property name="pjid" type="string" required="true"/>
+  </entity>
+  <service name="PjsentedemailService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">PjsentedemailService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.pjsentedemailservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">PjsentedemailService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/PjsentedemailService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/MailSRV-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/PjsentedemailService.php</item>
+      <item name="LINKED_FILE">PjsentedemailService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">PjsentedemailService</item>
+    </annotation>
+    <function name="getAllPjsentedemail" return-type="Pjsentedemail[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">countsent,status,mailserver,email,pjid</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getPjsentedemailByID" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="pjid" type="opaque"/>
+      <parameter name="email" type="opaque"/>
+    </function>
+    <function name="deletePjsentedemail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="pjid" type="opaque"/>
+      <parameter name="email" type="opaque"/>
+    </function>
+    <function name="createPjsentedemail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="updatePjsentedemail" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="count" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getPjsentedemail_paged" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="opaque"/>
+      <parameter name="numItems" type="opaque"/>
+    </function>
+  </service>
+  <entity name="Pjsentedemail">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Pjsentedemail</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Pjsentedemail</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">PjsentedemailService</item>
+    </annotation>
+    <annotation name="getAllPjsentedemail">
+      <item name="propertySpecifier">countsent,status,mailserver,email,pjid</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="countsent" type="string" required="true"/>
+    <property name="status" type="string" required="true"/>
+    <property name="mailserver" type="string" required="true"/>
+    <property name="email" type="string" required="true"/>
+    <property name="pjid" type="string" required="true"/>
+  </entity>
+  <service name="MailService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">MailService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.mailservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">MailService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/MailService.php</item>
+      <item name="PHP_SERVER_ROOT">D:\xampp\htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:\xampp\htdocs\MailSRV-debug\services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/MailService.php</item>
+      <item name="LINKED_FILE">MailService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">MailService</item>
+    </annotation>
+    <function name="getServer" return-type="Serverinfo">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">port,username,host,debug,password,auth</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getMailinfo" return-type="Mailinfo">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">message,ishtml,replytoname,subject,ccemail,fromname,fromemail,ccname,toname,replytoemail,toemail</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="sendMail" return-type="string">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="server" type="Serverinfo"/>
+      <parameter name="mailinfo" type="Mailinfo"/>
+    </function>
+  </service>
+  <entity name="Serverinfo">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Serverinfo</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Serverinfo</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">MailService,MailServiceDummy</item>
+    </annotation>
+    <annotation name="getServer">
+      <item name="propertySpecifier">port,username,host,debug,password,auth</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="port" type="integer" required="true"/>
+    <property name="username" type="string" required="true"/>
+    <property name="host" type="string" required="true"/>
+    <property name="debug" type="integer" required="true"/>
+    <property name="password" type="string" required="true"/>
+    <property name="auth" type="boolean" required="true"/>
+  </entity>
+  <entity name="Mailinfo">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Mailinfo</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Mailinfo</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">MailService,MailServiceDummy</item>
+    </annotation>
+    <annotation name="getMailinfo">
+      <item name="propertySpecifier">message,ishtml,replytoname,subject,ccemail,fromname,fromemail,ccname,toname,replytoemail,toemail</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="message" type="string" required="true"/>
+    <property name="ishtml" type="string" required="true"/>
+    <property name="replytoname" type="string" required="true"/>
+    <property name="subject" type="string" required="true"/>
+    <property name="ccemail" type="string" required="true"/>
+    <property name="fromname" type="string" required="true"/>
+    <property name="fromemail" type="string" required="true"/>
+    <property name="ccname" type="string" required="true"/>
+    <property name="toname" type="string" required="true"/>
+    <property name="replytoemail" type="string" required="true"/>
+    <property name="toemail" type="string" required="true"/>
+  </entity>
+  <service name="ProjectsService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">ProjectsService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.projectsservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">ProjectsService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/ProjectsService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/MailSRV-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/ProjectsService.php</item>
+      <item name="LINKED_FILE">ProjectsService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">ProjectsService</item>
+    </annotation>
+    <function name="getAllProjects" return-type="Projects[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">frmname,clickreplay,subject,link,modifyby,replaycount,cusid,messages,sented,replayname,emailcount,complete,openimg,ishtml,modifydate,sentfault,pjdatestart,replayemail,status,pjdatestop,createddate,createdby,pjid,flag,frmemail,rediectlink,codegen,pjname,msgcharset</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getProjectsByID" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="deleteProjects" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="createProjects" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="updateProjects" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="count" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getProjects_paged" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="opaque"/>
+      <parameter name="numItems" type="opaque"/>
+    </function>
+  </service>
+  <entity name="Projects">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Projects</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Projects</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">ProjectsService</item>
+    </annotation>
+    <annotation name="getAllProjects">
+      <item name="propertySpecifier">frmname,clickreplay,subject,link,modifyby,replaycount,cusid,messages,sented,replayname,emailcount,complete,openimg,ishtml,modifydate,sentfault,pjdatestart,replayemail,status,pjdatestop,createddate,createdby,pjid,flag,frmemail,rediectlink,codegen,pjname,msgcharset</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="frmname" type="string" required="true"/>
+    <property name="clickreplay" type="string" required="true"/>
+    <property name="subject" type="string" required="true"/>
+    <property name="link" type="string" required="true"/>
+    <property name="modifyby" type="string" required="true"/>
+    <property name="replaycount" type="string" required="true"/>
+    <property name="cusid" type="string" required="true"/>
+    <property name="messages" type="string" required="true"/>
+    <property name="sented" type="string" required="true"/>
+    <property name="replayname" type="string" required="true"/>
+    <property name="emailcount" type="string" required="true"/>
+    <property name="complete" type="string" required="true"/>
+    <property name="openimg" type="string" required="true"/>
+    <property name="ishtml" type="string" required="true"/>
+    <property name="modifydate" type="string" required="true"/>
+    <property name="sentfault" type="string" required="true"/>
+    <property name="pjdatestart" type="string" required="true"/>
+    <property name="replayemail" type="string" required="true"/>
+    <property name="status" type="string" required="true"/>
+    <property name="pjdatestop" type="string" required="true"/>
+    <property name="createddate" type="string" required="true"/>
+    <property name="createdby" type="string" required="true"/>
+    <property name="pjid" type="string" required="true"/>
+    <property name="flag" type="string" required="true"/>
+    <property name="frmemail" type="string" required="true"/>
+    <property name="rediectlink" type="string" required="true"/>
+    <property name="codegen" type="string" required="true"/>
+    <property name="pjname" type="string" required="true"/>
+    <property name="msgcharset" type="string" required="true"/>
+  </entity>
+  <service name="EmailsService">
+    <annotation name="ActionScriptGeneration">
+      <item name="Source">EmailsService</item>
+      <item name="ServiceType">RemoteObject</item>
+      <item name="Package">th.co.tomato.services.emailsservice</item>
+      <item name="Endpoint">gateway.php</item>
+      <item name="Destination">EmailsService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">PHP</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="PHP_RELATIVE_LOCATION">MailSRV-debug/services/EmailsService.php</item>
+      <item name="PHP_SERVER_ROOT">D:/xampp/htdocs</item>
+      <item name="DEFAULT_ENTITY_PACKAGE">th.co.tomato.valueObjects</item>
+      <item name="PHP_SERVICES_FOLDER">D:/xampp/htdocs/MailSRV-debug/services</item>
+      <item name="PHP_LOCATION">D:/xampp/htdocs/MailSRV-debug/services/EmailsService.php</item>
+      <item name="LINKED_FILE">EmailsService.php</item>
+      <item name="PHP_SERVER_ROOT_URL">http://localhost/</item>
+      <item name="ABSOLUTE_ENDPOINT">http://localhost/MailSRV-debug/gateway.php</item>
+      <item name="PHP_CLASS_NAME">EmailsService</item>
+    </annotation>
+    <function name="getAllEmails" return-type="Emails[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">birthday,state,x6,modifyby,address1,lastname,x7,x4,address2,x5,x2,x3,x0,x1,jobtitle,mobilephone,fl,name,gender,altemail,modifydate,sp,zipcode,sarary,createddate,createdby,firstname,fb,country,ip,x9,x8,registerdate,email,uuid,notes,telephone</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getEmailsByID" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="deleteEmails" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="itemID" type="opaque"/>
+    </function>
+    <function name="createEmails" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="updateEmails" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="item" type="opaque"/>
+    </function>
+    <function name="count" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">opaque</item>
+      </annotation>
+    </function>
+    <function name="getEmails_paged" return-type="opaque">
+      <annotation name="analyze group">
+        <item name="analyzed">false</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque,opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="startIndex" type="opaque"/>
+      <parameter name="numItems" type="opaque"/>
+    </function>
+    <function name="getGropubyEmail" return-type="Emailgroup[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">description,gname,gid</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">opaque</item>
+        <item name="returnType">opaque</item>
+      </annotation>
+      <parameter name="email" type="string"/>
+    </function>
+  </service>
+  <entity name="Emails">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Emails</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Emails</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">EmailsService</item>
+    </annotation>
+    <annotation name="getAllEmails">
+      <item name="propertySpecifier">birthday,state,x6,modifyby,address1,lastname,x7,x4,address2,x5,x2,x3,x0,x1,jobtitle,mobilephone,fl,name,gender,altemail,modifydate,sp,zipcode,sarary,createddate,createdby,firstname,fb,country,ip,x9,x8,registerdate,email,uuid,notes,telephone</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="birthday" type="string" required="true"/>
+    <property name="state" type="string" required="true"/>
+    <property name="x6" type="string" required="true"/>
+    <property name="modifyby" type="string" required="true"/>
+    <property name="address1" type="string" required="true"/>
+    <property name="lastname" type="string" required="true"/>
+    <property name="x7" type="string" required="true"/>
+    <property name="x4" type="string" required="true"/>
+    <property name="address2" type="string" required="true"/>
+    <property name="x5" type="string" required="true"/>
+    <property name="x2" type="string" required="true"/>
+    <property name="x3" type="string" required="true"/>
+    <property name="x0" type="string" required="true"/>
+    <property name="x1" type="string" required="true"/>
+    <property name="jobtitle" type="string" required="true"/>
+    <property name="mobilephone" type="string" required="true"/>
+    <property name="fl" type="string" required="true"/>
+    <property name="name" type="string" required="true"/>
+    <property name="gender" type="string" required="true"/>
+    <property name="altemail" type="string" required="true"/>
+    <property name="modifydate" type="string" required="true"/>
+    <property name="sp" type="string" required="true"/>
+    <property name="zipcode" type="string" required="true"/>
+    <property name="sarary" type="string" required="true"/>
+    <property name="createddate" type="string" required="true"/>
+    <property name="createdby" type="string" required="true"/>
+    <property name="firstname" type="string" required="true"/>
+    <property name="fb" type="string" required="true"/>
+    <property name="country" type="string" required="true"/>
+    <property name="ip" type="string" required="true"/>
+    <property name="x9" type="string" required="true"/>
+    <property name="x8" type="string" required="true"/>
+    <property name="registerdate" type="string" required="true"/>
+    <property name="email" type="string" required="true"/>
+    <property name="uuid" type="string" required="true"/>
+    <property name="notes" type="string" required="true"/>
+    <property name="telephone" type="string" required="true"/>
+  </entity>
+  <entity name="Emailgroup">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Emailgroup</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="RemoteClass">Emailgroup</item>
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">EmailsService</item>
+    </annotation>
+    <annotation name="getGropubyEmail">
+      <item name="propertySpecifier">description,gname,gid</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">th.co.tomato.valueObjects</item>
+    </annotation>
+    <property name="description" type="string" required="true"/>
+    <property name="gname" type="string" required="true"/>
+    <property name="gid" type="string" required="true"/>
+  </entity>
+</model>

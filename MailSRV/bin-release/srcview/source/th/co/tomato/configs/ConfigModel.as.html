@@ -1,0 +1,179 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>ConfigModel.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">th</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">co</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">tomato</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">configs</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">ConfigModel</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">ConfigModel</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+
+<span class="ActionScriptComment">// SiteConfigModel.as, created 5/5/2009 by Margo Powell
+</span><span class="ActionScriptComment">// Copyright 2009(C) NIM project
+</span><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">model</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Application</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">controls</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Alert</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ObjectUtil</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">URLUtil</span>;
+    
+    <span class="ActionScriptASDoc">/**
+     * Class used to store and/or return Application config settings such as
+     * the server name and port for the website along with the
+     * FlashRemoting channel and amf endpoint uri settings
+     * 
+     * This class allows you to dynamically set your configuration for 
+     * your flex/swf file on a website of your choice.
+     * 
+     * You do not need a -services compiler argument for the project and
+     * therefore no need to recompile your project code if you
+     * shift your code to different websites.
+     * 
+     * A context root default value is provided as a constant.
+     * 
+     * An amfphp endpoint default value is also provided as a constant.
+     * 
+     * The following flashVar variables can be passed if user wants
+     * to override default values. Examples below
+     * 1) contextRoot="/nimphp/";
+     * 
+     * NOTE: This class is called after applicationComplete and not 
+     * creationComplete(URLUtil unable to get server name at this stage).
+     *
+     * This class is geared for a php based server where a ContextRoot 
+     * function currently does not exist(whereas these functions
+     * do apparently exist for Java and coldfusion based servers).
+     * 
+     * To bypass this function limitation, the contextRoot should be
+     * defined as a constant in a php include file and then have the
+     * include file loaded in the php calling file using the 
+     * require_once feature. This constant can then be passed in as a 
+     * flashVar value if needed(if different from the default value
+     * defined below)
+     * 
+     * @author: Margo Powell
+     *  
+     **/</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">SiteConfigModel</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptComment">//declare the amfphp channel id
+</span>        <span class="ActionScriptReserved">public</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">CHANNELID</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"my-amfphp"</span>;     
+        
+        <span class="ActionScriptComment">// Default context root value,
+</span>        <span class="ActionScriptComment">//adjust as needed for your server using flashVars
+</span>        <span class="ActionScriptReserved">private</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">DEFAULT_CONTEXT_ROOT</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"/"</span>;
+        
+        <span class="ActionScriptComment">//default amfphp directory path
+</span>        <span class="ActionScriptReserved">private</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">DEFAULT_AMF_DIR</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"amfphp2.0/gateway.php"</span>;
+        
+        <span class="ActionScriptComment">//url to use when running within the ide
+</span>        <span class="ActionScriptReserved">private</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptReserved">const</span> <span class="ActionScriptDefault_Text">DEFAULT_IDE_URL</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"localhost:8080"</span>;
+        
+        
+        <span class="ActionScriptASDoc">/**
+         * Return the serverURL name and port value 
+         * for the application. The value returned depends
+         * on whether you are running locally from the IDE
+         * or are running live from a website.
+         * 
+         * Currently also passing the flashVar: serverURL 
+         * whose value is set to the following in php:
+         * $serverPath = $_SERVER['HTTP_HOST']
+         * 
+         **/</span>      
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">serverURL</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">serverName</span>:<span class="ActionScriptDefault_Text">String</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">urlString</span>:<span class="ActionScriptDefault_Text">String</span>;
+            
+            <span class="ActionScriptComment">//create reference to Application object
+</span>            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">app</span>:<span class="ActionScriptDefault_Text">Application</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">Application</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">application</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">Application</span>;
+            
+            <span class="ActionScriptReserved">if</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">app</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">url</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">app</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">url</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">indexOf</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"http:"</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptOperator">-</span>1 <span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                
+                <span class="ActionScriptDefault_Text">serverName</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">URLUtil</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getServerNameWithPort</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">app</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">loaderInfo</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">url</span><span class="ActionScriptBracket/Brace">)</span>;
+                <span class="ActionScriptDefault_Text">urlString</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"http://"</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">serverName</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">SiteConfigModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contextRoot</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                
+                <span class="ActionScriptDefault_Text">urlString</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"http://"</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">DEFAULT_IDE_URL</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">SiteConfigModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contextRoot</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">urlString</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">// return the correct endpoint, if this is server from an HTTP request
+</span>        <span class="ActionScriptComment">// return the default localhost:8080 for development, if FlexBuilder launches
+</span>        <span class="ActionScriptComment">// the application locally with an absolute path (file://c:\...)
+</span>        <span class="ActionScriptASDoc">/**
+         * Return the amfEndPoint for the application. 
+         * The value returned depends on whether you are running 
+         * locally from the IDE or are running live from a website.
+         * 
+         * Currently also passing the flashVar: serverURL 
+         * whose value is set to the following in php:
+         * $serverPath = $_SERVER['HTTP_HOST']
+         * 
+         * return the default localhost:8080 for development, if
+         * the application launched locally with an absolute path (file://c:\...)
+         * 
+         **/</span>      
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">amfEndPoint</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">amfPath</span>:<span class="ActionScriptDefault_Text">String</span>;
+            
+            <span class="ActionScriptComment">//create reference to Application object
+</span>            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">app</span>:<span class="ActionScriptDefault_Text">Application</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">Application</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">application</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">Application</span>;
+            
+            <span class="ActionScriptComment">//will return appropriate path depending on whether running from server or ide
+</span>            <span class="ActionScriptDefault_Text">amfPath</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">SiteConfigModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">serverURL</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">SiteConfigModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DEFAULT_AMF_DIR</span>;
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">amfPath</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">/*
+        * Return the DEFAULT_CONTEXT_ROOT value unless 
+        * overridden by flashVar value of contextRoot.
+        * 
+        * Pull the context-root out of the flash var, 
+        * if it's defined in your &lt;object/&gt; or  tags.
+        * I use swfobject variables to set these values
+        * ex: contextRoot=/flex
+        **/</span>        
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptReserved">static</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">contextRoot</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">contextRootRef</span>:<span class="ActionScriptDefault_Text">String</span>;
+            
+            <span class="ActionScriptComment">//create reference to Application object
+</span>            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">app</span>:<span class="ActionScriptDefault_Text">Application</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">Application</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">application</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">Application</span>;
+            
+            <span class="ActionScriptComment">//check to see if context root should be overriden
+</span>            <span class="ActionScriptComment">//by value passed in as flashVar
+</span>            <span class="ActionScriptReserved">if</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">app</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">parameters</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contextRoot</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span> <span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptComment">//Alert.show( ObjectUtil.toString(app.parameters) );
+</span>                <span class="ActionScriptDefault_Text">contextRootRef</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">app</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">parameters</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">contextRoot</span>;
+            <span class="ActionScriptBracket/Brace">}</span> <span class="ActionScriptReserved">else</span> <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptComment">//use default
+</span>                <span class="ActionScriptDefault_Text">contextRootRef</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">SiteConfigModel</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DEFAULT_CONTEXT_ROOT</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">contextRootRef</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        
+    <span class="ActionScriptBracket/Brace">}</span>
+</pre></body>
+</html>

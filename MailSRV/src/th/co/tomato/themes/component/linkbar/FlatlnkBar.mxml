@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" 
+		 xmlns:linkbar="th.co.tomato.themes.component.linkbar.*"
+		 width="100%" minHeight="40"  
+		 >
+	<fx:Metadata>
+		[Event(name="ItemClick", type="mx.events.ItemClickEvent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.ItemClickEvent;
+			
+			import th.co.tomato.themes.component.avartarBtn.a;
+			
+			[Bindable] public var ac:ArrayCollection = new ArrayCollection();
+			
+ 
+			 private var _CloseDisable:Boolean = true;
+				
+			[Bindable]
+			public function get CloseDisable():Boolean
+			{
+				return _CloseDisable;
+			}
+
+			public function set CloseDisable(value:Boolean):void
+			{
+				_CloseDisable = value;
+				
+			}
+
+			protected function LinkBar_itemClickHandler(event:ItemClickEvent):void
+			{
+				dispatchEvent(new ItemClickEvent('ItemClick',false,false,null,-1,null,event.item));
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:Rect top="0" left="0" right="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color="0xcccccc"  />
+		</s:fill>
+	</s:Rect>
+	<s:HGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="right" paddingRight="50">
+		<linkbar:FlatLinkBar id="LinkBar" width="100%" backgroundColor="#CCCCCC"
+							 borderAlpha="0.0" borderVisible="false"  paddingLeft="5"
+							 contentBackgroundColor="#CCCCCC" dataProvider="{ac}"
+							 dropShadowVisible="false"
+							 linkButtonStyleName="linkButtonStyles"
+							 itemClick="LinkBar_itemClickHandler(event)"
+							 separatorSkin="{th.co.tomato.themes.component.linkbar.LinkBarSeparatorSkin}"/>
+	</s:HGroup>
+	<s:Button label="A" skinClass="th.co.tomato.themes.component.QuadrateIconBtn.QuadrateIconBtnSkin" visible="{CloseDisable}"  right="5" verticalCenter="0" />
+</s:Group>

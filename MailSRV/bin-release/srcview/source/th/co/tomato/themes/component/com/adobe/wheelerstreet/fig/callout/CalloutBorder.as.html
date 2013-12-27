@@ -1,0 +1,396 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>CalloutBorder.as</title>
+<link rel="stylesheet" type="text/css" href="../../../../../../../../../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">th</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">co</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">tomato</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">themes</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">component</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">adobe</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">wheelerstreet</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">fig</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">callout</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">display</span><span class="ActionScriptOperator">.</span><span class="ActionScriptOperator">*</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">filters</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DropShadowFilter</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">EdgeMetrics</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">graphics</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RectangularDropShadow</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">skins</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">RectangularBorder</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">containers</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Panel</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">geom</span><span class="ActionScriptOperator">.</span><span class="ActionScriptOperator">*</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">MouseEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">utils</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Timer</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">TimerEvent</span>;
+    <span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">UIComponent</span>;
+
+    <span class="ActionScriptASDoc">/**
+     *  The skin for a Callout.
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">CalloutBorder</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">RectangularBorder</span> 
+    <span class="ActionScriptBracket/Brace">{</span>
+    
+        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//  Constructor
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+        <span class="ActionScriptASDoc">/**
+         *  Constructor.
+         */</span>
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">tipPoint</span>:<span class="ActionScriptDefault_Text">Point</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Point</span>;
+
+        <span class="ActionScriptASDoc">/**
+         * The Callout border draws the callout's background based on the 
+         * direction assigned.  It also creates a hit area that's shape is
+         * determined by the borders aspect ratio.
+         */</span>
+         
+        <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">CalloutBorder</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span> 
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         */</span>
+         
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">handleTimer</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">e</span>:<span class="ActionScriptDefault_Text">TimerEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScripttrace">trace</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"hit"</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptComment">//----------------------------------
+</span>        <span class="ActionScriptComment">//  borderMetrics
+</span>        <span class="ActionScriptComment">//----------------------------------
+</span>    
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  Storage for the borderMetrics property.
+         */</span>
+        <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_borderMetrics</span>:<span class="ActionScriptDefault_Text">EdgeMetrics</span>;
+        
+        
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">borderMetrics</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">EdgeMetrics</span>
+        <span class="ActionScriptBracket/Brace">{</span>        
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_borderMetrics</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_borderMetrics</span>;
+                
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">borderStyle</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"borderStyle"</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutOffsetX"</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutOffsetY"</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">borderStyle</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>    
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptString">"topRightCallout"</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                     <span class="ActionScriptDefault_Text">_borderMetrics</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">EdgeMetrics</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> <span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> 0<span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+    
+                 <span class="ActionScriptReserved">case</span> <span class="ActionScriptString">"topLeftCallout"</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                     <span class="ActionScriptDefault_Text">_borderMetrics</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">EdgeMetrics</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span>            
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptString">"bottomLeftCallout"</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                     <span class="ActionScriptDefault_Text">_borderMetrics</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">EdgeMetrics</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> <span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span>
+                    <span class="ActionScriptReserved">case</span> <span class="ActionScriptString">"bottomRightCallout"</span>:
+                <span class="ActionScriptBracket/Brace">{</span>
+                     <span class="ActionScriptDefault_Text">_borderMetrics</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">EdgeMetrics</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptReserved">break</span>;
+                <span class="ActionScriptBracket/Brace">}</span> 
+             <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_borderMetrics</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    
+        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//  Overridden methods
+</span>        <span class="ActionScriptComment">//
+</span>        <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>        
+        
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  If borderStyle may have changed, clear the cached border metrics.
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">styleChanged</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">styleProp</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">styleProp</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptString">"borderStyle"</span> <span class="ActionScriptOperator">||</span>
+                <span class="ActionScriptDefault_Text">styleProp</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptString">"calloutOffsetX"</span> <span class="ActionScriptOperator">||</span>
+                <span class="ActionScriptDefault_Text">styleProp</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptString">"calloutOffsetY"</span> <span class="ActionScriptOperator">||</span>
+                <span class="ActionScriptDefault_Text">styleProp</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptString">"calloutPointerWidth"</span> <span class="ActionScriptOperator">||</span>
+                <span class="ActionScriptDefault_Text">styleProp</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptString">"showHitArea"</span> <span class="ActionScriptOperator">||</span>
+                <span class="ActionScriptDefault_Text">styleProp</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptDefault_Text">_borderMetrics</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+            
+            <span class="ActionScriptDefault_Text">invalidateDisplayList</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    
+        <span class="ActionScriptASDoc">/**
+         *  @private
+         *  Draw the background, border, and hitArea.
+         */</span>
+        <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">updateDisplayList</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span>:<span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">h</span>:<span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+        <span class="ActionScriptBracket/Brace">{</span>    
+            
+            <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">updateDisplayList</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">backgroundGradientColors</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"backgroundGradientColors"</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">backgroundAlpha</span>:<span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"backgroundAlpha"</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">borderStyle</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"borderStyle"</span><span class="ActionScriptBracket/Brace">)</span>;
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">calloutPointerWidth</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutPointerWidth"</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutOffsetX"</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"calloutOffsetY"</span><span class="ActionScriptBracket/Brace">)</span>;
+    
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">cornerRadius</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"cornerRadius"</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">dropShadowAlpha</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> 1;
+            
+            
+            <span class="ActionScriptComment">//
+</span>            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">fillType</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">GradientType</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">LINEAR</span>;
+              <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">colors</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">backgroundGradientColors</span>;
+              <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">alphas</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptDefault_Text">backgroundAlpha</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">backgroundAlpha</span><span class="ActionScriptBracket/Brace">]</span>;
+              <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">ratios</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span>0x00<span class="ActionScriptOperator">,</span> 0x80<span class="ActionScriptBracket/Brace">]</span>;
+              <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">matr</span>:<span class="ActionScriptDefault_Text">Matrix</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Matrix</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+              <span class="ActionScriptDefault_Text">matr</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">createGradientBox</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">Math</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PI</span><span class="ActionScriptOperator">/</span>2<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptBracket/Brace">)</span>;
+             <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">spreadMethod</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">SpreadMethod</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">PAD</span>;
+              
+            
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">shadowAlpha</span>:<span class="ActionScriptDefault_Text">Number</span> <span class="ActionScriptOperator">=</span> 0.1;
+            
+            <span class="ActionScriptComment">// hit area offset grows based on aspect 
+</span>            <span class="ActionScriptComment">// ratio of callout
+</span>            
+
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span><span class="ActionScriptBracket/Brace">(</span> <span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">/</span><span class="ActionScriptDefault_Text">h</span> <span class="ActionScriptOperator">*</span> 2<span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">+</span> 1;
+            
+        
+    
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">g</span>:<span class="ActionScriptDefault_Text">Graphics</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">graphics</span>;
+            <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">clear</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;  
+            
+            <span class="ActionScriptDefault_Text">filters</span> <span class="ActionScriptOperator">=</span> [];
+
+
+            <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">endFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    
+            <span class="ActionScriptReserved">switch</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">borderStyle</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+    
+                
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptString">"topRightCallout"</span>: 
+                <span class="ActionScriptBracket/Brace">{</span>
+
+                    <span class="ActionScriptComment">// hit area
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">beginFill</span><span class="ActionScriptBracket/Brace">(</span>0xFF0000<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptOperator">/</span>4<span class="ActionScriptOperator">,</span> 
+                             <span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptOperator">/</span>4<span class="ActionScriptBracket/Brace">)</span>
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptBracket/Brace">)</span>;
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">h</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptBracket/Brace">)</span>;         
+                    
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">h</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span> <span class="ActionScriptBracket/Brace">)</span>;    
+                                 
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">beginGradientFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">fillType</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">colors</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">alphas</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ratios</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">matr</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">spreadMethod</span><span class="ActionScriptBracket/Brace">)</span>;  
+                                
+                    <span class="ActionScriptComment">// border     
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">drawRoundRectComplex</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>                    
+                                           0<span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           0<span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span>
+                                           <span class="ActionScriptBracket/Brace">)</span>; 
+    
+                    <span class="ActionScriptComment">// topRight pointer 
+</span>                     <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> 
+                              <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span> 
+                             <span class="ActionScriptDefault_Text">calloutOffsetY</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptBracket/Brace">)</span>;
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutPointerWidth</span><span class="ActionScriptOperator">,</span> 
+                             <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">endFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>; 
+                    
+
+                    
+                    <span class="ActionScriptDefault_Text">filters</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">DropShadowFilter</span><span class="ActionScriptBracket/Brace">(</span>2<span class="ActionScriptOperator">,</span> 90<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dropShadowAlpha</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">]</span>;
+                    
+                    <span class="ActionScriptDefault_Text">tipPoint</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">x</span> <span class="ActionScriptOperator">=</span> 0;
+                    <span class="ActionScriptDefault_Text">tipPoint</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">y</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">h</span>;            
+                    
+                    
+                    <span class="ActionScriptReserved">break</span>;
+                    
+                <span class="ActionScriptBracket/Brace">}</span>
+    
+                 <span class="ActionScriptReserved">case</span> <span class="ActionScriptString">"topLeftCallout"</span>: 
+                <span class="ActionScriptBracket/Brace">{</span>
+
+
+                    <span class="ActionScriptComment">// hit area
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">beginFill</span><span class="ActionScriptBracket/Brace">(</span>0xFF0000<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveTo</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span> 
+                             <span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptBracket/Brace">)</span>
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                             0 <span class="ActionScriptBracket/Brace">)</span>;
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">h</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;         
+                    
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">h</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptBracket/Brace">)</span>;    
+                    
+
+
+                    <span class="ActionScriptReserved">this</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">graphics</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">beginGradientFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">fillType</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">colors</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">alphas</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ratios</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">matr</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">spreadMethod</span><span class="ActionScriptBracket/Brace">)</span>;  
+    
+                    <span class="ActionScriptComment">// border 
+</span>    
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">drawRoundRectComplex</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span>                    
+                                           0<span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           0
+                                           <span class="ActionScriptBracket/Brace">)</span>; 
+    
+                    <span class="ActionScriptComment">// topLeft pointer 
+</span>    
+                     <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">h</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>; <span class="ActionScriptComment">// tip
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutPointerWidth</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">endFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>; 
+                    
+                    <span class="ActionScriptDefault_Text">filters</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">DropShadowFilter</span><span class="ActionScriptBracket/Brace">(</span>2<span class="ActionScriptOperator">,</span> 90<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dropShadowAlpha</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">]</span>;
+                    
+                    <span class="ActionScriptDefault_Text">tipPoint</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">x</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span>;
+                    <span class="ActionScriptDefault_Text">tipPoint</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">y</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span>; 
+                    
+                    <span class="ActionScriptReserved">break</span>;
+                    
+                <span class="ActionScriptBracket/Brace">}</span>
+    
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptString">"bottomLeftCallout"</span>: 
+                <span class="ActionScriptBracket/Brace">{</span>
+
+                    <span class="ActionScriptComment">// hit area
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">beginFill</span><span class="ActionScriptBracket/Brace">(</span>0xFF0000<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveTo</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span> 
+                             <span class="ActionScriptDefault_Text">calloutOffsetY</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptBracket/Brace">)</span>
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                             0<span class="ActionScriptBracket/Brace">)</span>;
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptBracket/Brace">)</span>;         
+                    
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">h</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptBracket/Brace">)</span>;    
+
+
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">beginGradientFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">fillType</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">colors</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">alphas</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ratios</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">matr</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">spreadMethod</span><span class="ActionScriptBracket/Brace">)</span>;  
+    
+                    <span class="ActionScriptComment">// border 
+</span>    
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">drawRoundRectComplex</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           0<span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span>
+                                           <span class="ActionScriptBracket/Brace">)</span>; 
+    
+                    <span class="ActionScriptComment">// bottomLeft pointer 
+</span>    
+                     <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutPointerWidth</span><span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> 0<span class="ActionScriptBracket/Brace">)</span>; <span class="ActionScriptComment">// tip
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">endFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>; 
+                    
+                    <span class="ActionScriptDefault_Text">filters</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">DropShadowFilter</span><span class="ActionScriptBracket/Brace">(</span>2<span class="ActionScriptOperator">,</span> 90<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dropShadowAlpha</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">]</span>;
+                    
+                    <span class="ActionScriptDefault_Text">tipPoint</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">x</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">w</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutOffsetX</span>;
+                    <span class="ActionScriptDefault_Text">tipPoint</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">y</span> <span class="ActionScriptOperator">=</span> 0; 
+                    
+                    <span class="ActionScriptReserved">break</span>;
+                    
+                <span class="ActionScriptBracket/Brace">}</span>
+                <span class="ActionScriptReserved">case</span> <span class="ActionScriptString">"bottomRightCallout"</span>: 
+                <span class="ActionScriptBracket/Brace">{</span>
+
+
+                    <span class="ActionScriptComment">// hit area
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">beginFill</span><span class="ActionScriptBracket/Brace">(</span>0xFF0000<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveTo</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span> 
+                             0<span class="ActionScriptBracket/Brace">)</span>
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">calloutOffsetY</span> <span class="ActionScriptOperator">-</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptBracket/Brace">)</span>;
+                             
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">h</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">hitAreaOffset</span><span class="ActionScriptBracket/Brace">)</span>;         
+                    
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                             <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptBracket/Brace">)</span>;    
+                    
+
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">beginGradientFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">fillType</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">colors</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">alphas</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">ratios</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">matr</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">spreadMethod</span><span class="ActionScriptBracket/Brace">)</span>;  
+    
+                    <span class="ActionScriptComment">// border 
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">drawRoundRectComplex</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>                    
+                                           <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">w</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">h</span><span class="ActionScriptOperator">-</span><span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptOperator">,</span>
+                                           0<span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span><span class="ActionScriptOperator">,</span>
+                                           <span class="ActionScriptDefault_Text">cornerRadius</span>
+                                           <span class="ActionScriptBracket/Brace">)</span>; 
+    
+                    <span class="ActionScriptComment">// bottomRight pointer 
+</span>    
+                     <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">moveTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span>0<span class="ActionScriptOperator">,</span>0<span class="ActionScriptBracket/Brace">)</span>; <span class="ActionScriptComment">// tip
+</span>                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">lineTo</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">calloutOffsetX</span> <span class="ActionScriptOperator">+</span> <span class="ActionScriptDefault_Text">calloutPointerWidth</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">calloutOffsetY</span><span class="ActionScriptBracket/Brace">)</span>;
+                    <span class="ActionScriptDefault_Text">g</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">endFill</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>; 
+                    
+                    <span class="ActionScriptDefault_Text">filters</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">DropShadowFilter</span><span class="ActionScriptBracket/Brace">(</span>2<span class="ActionScriptOperator">,</span> 90<span class="ActionScriptOperator">,</span> 0<span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dropShadowAlpha</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptBracket/Brace">]</span>;
+                    
+                    <span class="ActionScriptDefault_Text">tipPoint</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">x</span> <span class="ActionScriptOperator">=</span> 0;
+                    <span class="ActionScriptDefault_Text">tipPoint</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">y</span> <span class="ActionScriptOperator">=</span> 0; 
+                    
+                    <span class="ActionScriptReserved">break</span>;
+                    
+                <span class="ActionScriptBracket/Brace">}</span> 
+                
+
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

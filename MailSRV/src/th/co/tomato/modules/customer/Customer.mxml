@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<main:IGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+			 xmlns:s="library://ns.adobe.com/flex/spark"
+			 xmlns:mx="library://ns.adobe.com/flex/mx"
+			 xmlns:MainClass="th.co.tomato.themes.component.MainClass.*"
+			 xmlns:component="th.co.tomato.themes.component.*"
+			 xmlns:main="th.co.tomato.main.*"
+			 xmlns:linkbar="th.co.tomato.themes.component.linkbar.*"
+			 xmlns:searchtextinput="th.co.tomato.themes.component.searchtextinput.*"
+			 xmlns:utils="th.co.tomato.utils.*"
+			 width="100%" height="100%" 
+			 creationComplete="init()" 
+			 resizeEffect="rz" 
+			 >
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.events.CloseEvent;
+			import mx.events.EffectEvent;
+			import mx.events.ItemClickEvent;
+			import mx.events.ListEvent;
+			import mx.events.PropertyChangeEvent;
+			import mx.utils.ObjectUtil;
+			import mx.utils.StringUtil;
+			
+			import spark.events.IndexChangeEvent;
+			
+			import th.co.tomato.event.CustomerEvent;
+			import th.co.tomato.main.MainConfig;
+			import th.co.tomato.main.MenuConfig;
+			import th.co.tomato.themes.FlatTheme;
+			import th.co.tomato.utils.MessageAlert;
+			import th.co.tomato.valueObjects.Customers;
+			
+			[Bindable] private var thisHeight:Number = 0;
+			[Bindable] private var pchange:Boolean = false;
+			
+			protected function lnkbar_ItemClickHandler(event:ItemClickEvent):void
+			{
+				Alert.show(event.item as String,'itemClick');
+			}
+			
+			protected function ResizeContent(event:MouseEvent):void
+			{
+				rz.duration = 500;
+				if(this.height == 50 ){
+					this.height = MainConfig.getInstance.mainSize;
+					pnlMain.height = MainConfig.getInstance.mainSize-50;
+				} else {
+					this.height =  50;
+					pnlMain.height  = 0;
+				}
+			}
+			
+			override public function init():void
+			{
+				thisHeight =MainConfig.getInstance.mainSize;
+				cmbPaging.selectedIndex = 0;
+				pg.rowPerPage = parseInt(cmbPaging.selectedItem.age);
+//				pg.dataTemp = acProduct;
+				CustomerEvent.getInstance.getAllcustomer(this);
+			}
+			
+			protected function rz_effectEndHandler(event:EffectEvent):void
+			{
+				rz.duration = 0;
+			}
+			
+			protected function rz_effectStartHandler(event:EffectEvent):void
+			{
+				rectbox.visible = false;
+			}
+			
+			protected function cmbPaging_changeHandler(event:IndexChangeEvent):void
+			{
+					pg.rowPerPage = parseInt(cmbPaging.selectedItem.age);
+			}
+			
+			protected function ReloadAll(event:MouseEvent) : void
+			{
+				if(pchange){
+					MessageAlert.getConfirmAlertListener("Data have Change Do you want to Update or Save ?", function (event:CloseEvent) : void
+					{
+						if (event.detail == Alert.YES)
+						{
+							if (CustomerEvent.getInstance.voCustomer.newitem)
+							{
+								CustomerEvent.getInstance.ceateCustomers(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+							}
+							else
+							{
+								CustomerEvent.getInstance.updateCustomer(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+							}
+						} else {
+							CustomerEvent.getInstance.getAllcustomer(MenuConfig.getInstance.IG);
+							vs.selectedIndex = 0;
+							tabNav.selectedValue = "LIST";
+							clearData();
+						}
+					});	
+					CustomerEvent.getInstance.voCustomer = new Customers;
+					pchange = false;
+				} else {
+					CustomerEvent.getInstance.getAllcustomer(this);
+					vs.selectedIndex = 0;
+					tabNav.selectedValue = "LIST";
+					clearData();
+				}
+			}
+			
+			public function getAllsuccess(ac:ArrayCollection) : void
+			{
+				pg.dataTemp = ac;
+				pg.startPaging();
+			}
+			
+			
+			protected function searchCustomer(event:Event):void
+			{
+				pg.dataTemp.filterFunction = filterFunc;
+				pg.dataTemp.refresh();
+				pg.startPaging();
+				vs.selectedIndex = 0;
+				tabNav.selectedValue = 'LIST';
+			}
+			
+			private function filterFunc(item:Object):Boolean {
+				var chk:Boolean = false;
+				var s:String = txtsearch.text;
+				if (StringUtil.trim(s).length > 0) {
+					
+					trace(item.cusname);
+					if (item.cusname != null && item.cusname.indexOf(s) > -1)
+					{
+						chk = true;
+					}
+					
+					trace(item.contactname);
+					if (item.contactname != null && item.contactname.indexOf(s) > -1)
+					{
+						chk = true;
+					}
+				}
+				else
+				{
+					chk = true;
+				}
+			
+				return chk;
+			}
+			
+			protected function dgDoubleClick(event:MouseEvent):void
+			{
+				if (pchange)
+				{
+					MessageAlert.getConfirmAlertListener("Data have Change Do you want to Update or Save ?", function (event:CloseEvent) : void
+					{
+						if (event.detail == Alert.YES)
+						{
+							if (CustomerEvent.getInstance.voCustomer.newitem)
+							{
+								CustomerEvent.getInstance.ceateCustomers(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+							}
+							else
+							{
+								CustomerEvent.getInstance.updateCustomer(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+							}
+							pchange = false;
+						}
+						else
+						{
+							pchange = false;
+						}
+						return;
+					});
+				}
+				
+				if (dg.selectedIndex > -1)
+				{
+					vs.selectedIndex = 1;
+					tabNav.selectedValue = "CUS";
+				}
+			}
+			
+			protected function NewClick(event:MouseEvent):void
+			{
+					if (pchange)
+					{
+						MessageAlert.getConfirmAlertListener("Data have Change Do you want to Update or Save ?", function (event:CloseEvent) : void
+						{
+							if (event.detail == Alert.YES)
+							{
+								if (CustomerEvent.getInstance.voCustomer.newitem)
+								{
+									CustomerEvent.getInstance.ceateCustomers(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+								}
+								else
+								{
+									CustomerEvent.getInstance.updateCustomer(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+								}
+							} 
+								CustomerEvent.getInstance.voCustomer = new Customers();
+								CustomerEvent.getInstance.voCustomer.newitem = true;
+								CustomerEvent.getInstance.voCustomer.removeEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertychange);
+								CustomerEvent.getInstance.voCustomer.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertychange);
+							    pchange = false;
+						});
+					} else {
+							CustomerEvent.getInstance.voCustomer = new Customers();
+							CustomerEvent.getInstance.voCustomer.newitem = true;
+							CustomerEvent.getInstance.voCustomer.removeEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertychange);
+							CustomerEvent.getInstance.voCustomer.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertychange);
+					}
+							vs.selectedIndex = 1;
+				
+			}
+			
+			protected function DeleteClick(event:MouseEvent):void
+			{
+				if (dg.selectedIndex > -1)
+				{
+					MessageAlert.getConfirmAlertListener("Are you sure want to Delete Customer ?", function (event:CloseEvent) : void
+					{
+						if (event.detail == Alert.YES)
+						{
+							CustomerEvent.getInstance.delCustomer(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+						}
+					});
+				}
+			}
+			
+			protected function SaveClick(event:MouseEvent):void
+			{
+				if (validate() && pchange)
+				{
+					getData();
+					if (CustomerEvent.getInstance.voCustomer.newitem)
+					{
+						CustomerEvent.getInstance.ceateCustomers(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+					}
+					else
+					{
+						CustomerEvent.getInstance.updateCustomer(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+					}
+					pchange = false;
+				}
+			}
+			
+			private function propertychange(e:PropertyChangeEvent):void
+			{
+				pchange = true;
+			}
+			
+			
+			private function validate():Boolean {
+				var chk:Boolean = true;
+				if(CustomerEvent.getInstance.voCustomer.cusname == ''){
+					chk = false;
+				}
+				if(CustomerEvent.getInstance.voCustomer.contactname == ''){
+					chk = false;
+				}
+				if(CustomerEvent.getInstance.voCustomer.email == ''){
+					chk = false;
+				}
+				if(!chk){
+					MessageAlert.getWarningAlert('Please Fill all require field!');
+				}
+				return chk;
+			}
+			
+			private function getData():void {
+				
+			}
+			
+			private function setData():void {
+				
+			}
+			
+			private function clearData():void {
+				
+			}
+			
+			protected function dg_itemClickHandler(event:ListEvent) : void
+			{
+				if (this.pchange)
+				{
+					MessageAlert.getConfirmAlertListener("Data have Change Do you want to Update or Save ?", function (event:CloseEvent) : void
+					{
+						if (event.detail == Alert.YES)
+						{
+							if (CustomerEvent.getInstance.voCustomer.newitem)
+							{
+								CustomerEvent.getInstance.ceateCustomers(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+							}
+							else
+							{
+								CustomerEvent.getInstance.updateCustomer(CustomerEvent.getInstance.voCustomer, MenuConfig.getInstance.IG);
+							}
+							CustomerEvent.getInstance.voCustomer = dg.selectedItem as Customers;
+							CustomerEvent.getInstance.voCustomer.removeEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertychange);
+							CustomerEvent.getInstance.voCustomer.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertychange);
+						}
+						pchange = false;
+						return;
+					});
+				} else {
+					CustomerEvent.getInstance.voCustomer = ObjectUtil.copy(this.dg.selectedItem) as Customers;
+					CustomerEvent.getInstance.voCustomer.removeEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertychange);
+					CustomerEvent.getInstance.voCustomer.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, propertychange);
+				}
+			}
+
+			protected function tabNav_changeHandler(event:Event):void
+			{
+				if (tabNav.selectedValue == "LIST")
+				{
+					vs.selectedIndex = 0;
+				}
+				else
+				{
+					vs.selectedIndex = 1;
+				}
+				
+			}
+			
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:ArrayCollection id="ac">
+			<fx:Object>Home</fx:Object>
+			<fx:Object>จอง</fx:Object>
+			<fx:Object>รายการ</fx:Object>
+			<fx:Object>รับชำระเงิน</fx:Object>
+		</s:ArrayCollection>
+		
+		<s:ArrayCollection id="ac3">
+			<fx:Object name="10"  age = "10" email="a@abc.com" />
+			<fx:Object name="20"  age = "20" email="b@abc.com" />
+			<fx:Object name="50"  age = "50" email="c@abc.com" />
+			<fx:Object name="100"  age = "100" email="d@abc.com" />
+			<fx:Object name="200"  age = "200" email="e@abc.com" />
+		</s:ArrayCollection>
+		
+		<mx:Resize id="rz"  duration="0"
+				   effectStart="rz_effectStartHandler(event)" 
+				   effectEnd="rz_effectEndHandler(event)"
+				   />
+		<s:RadioButtonGroup id="tabNav" change="tabNav_changeHandler(event)" />
+	</fx:Declarations>
+	<s:Rect top="0" left="0" right="0" bottom="0" id="rectbox" >
+		<s:fill>
+			<s:SolidColor color="0xFFFFFF" />
+		</s:fill>
+		<s:stroke>
+			<s:SolidColorStroke color="{FlatTheme.upColor}"  weight="1"/>
+		</s:stroke>
+	</s:Rect>
+	<s:Group top="0.5" left="0.5" right="0.5" bottom="0.5" >
+		<s:layout>
+			<s:VerticalLayout gap="0" />
+		</s:layout>
+		<s:Group width="100%" height="50">
+		<s:Rect top="0" left="0" right="0" bottom="0"  >
+			<s:fill>
+				<s:SolidColor color="{FlatTheme.upColor}" />
+			</s:fill>
+		</s:Rect>
+		<s:HGroup width="100%" height="50" textAlign="right" horizontalAlign="right" verticalAlign="middle" paddingRight="5" paddingLeft="5"
+				  color="0xFFFFFF"
+				  >
+			<s:RichText text="X" fontSize="25" fontFamily="myiconfont" color="{FlatTheme.txtupColor}" />
+			<s:Spacer width="10" />
+			<s:RichText text="{MenuConfig.getInstance.MENUSELECT}" fontSize="20"  color="{FlatTheme.txtupColor}"/>
+			<s:Spacer width="10" />
+			<s:ComboBox  skinClass="th.co.tomato.themes.component.Combobox.FlatComboboxskin" dataProvider="{ac3}" labelField="age"  id="cmbPaging"
+						 change="cmbPaging_changeHandler(event)" textAlign="left"
+						 />
+			<mx:Text text="entries per page" />
+			<s:CheckBox label="Address" id="chkAdd" />
+			<s:CheckBox label="Created/Modified" id="chkMody" />
+			<s:Spacer width="100%" />
+			<searchtextinput:SearchTextinput prompt="Search hear..." includeInLayout="{FlatTheme.menuIncludeinlayout}" 
+											 skinClass="th.co.tomato.themes.component.searchtextinput.SearchTextInputSkin" 
+											 TXTSEARCH="searchCustomer(event)" enter="searchCustomer(event)"
+											 id="txtsearch" textAlign="left"
+											 />
+			<s:Button label="New" click="NewClick(event)"/>
+			<s:Button label="Delete" click="DeleteClick(event)"/>
+			<s:Button label="Save" click="SaveClick(event)" />
+			<s:Button width="30" height="30" label="_" click="ReloadAll(event)"
+					  skinClass="th.co.tomato.themes.component.RotateBtn.RotateBtnSkin"/>
+<!--			<MainClass:TwostateBtn skinClass="th.co.tomato.themes.component.twostatebtn.TwoStateBtnSkin" label="A" id="two2" />
+			<s:Button label="A" skinClass="th.co.tomato.themes.component.QuadrateIconBtn.QuadrateIconBtnSkin"  />
+			<s:Button label="B" skinClass="th.co.tomato.themes.component.RotateBtn.RotateBtnSkin" height="30" width="30" click="ResizeContent(event)" />
+			<s:ToggleButton skinClass="th.co.tomato.themes.component.ToggleButtonBtn.ToggleButtonIconSkin" id="twoBtn"  label="A"/>	  
+			<s:ComboBox x="540" y="114" labelField="name"
+						skinClass="th.co.tomato.themes.component.Combobox.FlatComboboxskin"/>-->
+		</s:HGroup>	
+		</s:Group>
+		<mx:Panel id="pnlMain" width="100%" height="100%" borderColor="{FlatTheme.upColor}"
+				  dropShadowVisible="false" headerHeight="0" resizeEffect="rz">
+			<s:Group width="100%" height="100%" id="MainG">
+				<s:layout>
+					<s:VerticalLayout gap="5" paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5" />
+				</s:layout>
+				<s:HGroup width="100%" height="40" verticalAlign="middle">
+					<s:RadioButton skinClass="th.co.tomato.themes.component.Navigator.WebNav" label="รายชื่อลูกค้า" value="LIST" groupName="tabNav" selected="true" width="150"/>
+					<s:RadioButton skinClass="th.co.tomato.themes.component.Navigator.WebNav" label="รายละเอียดลูกค้า" value="CUS" groupName="tabNav" width="150"/>
+					<s:Spacer width="100%" />
+				</s:HGroup>
+				<mx:ViewStack id="vs" width="100%" height="100%">
+					<s:NavigatorContent width="{pnlMain.width}" height="100%" label="">
+				<mx:VBox width="100%" height="100%" verticalScrollPolicy="off" horizontalScrollPolicy="off"   top="-10">
+					<mx:HBox horizontalScrollPolicy="auto" verticalScrollPolicy="off" width="{vs.width}" height="100%">
+						<mx:AdvancedDataGrid width="100%" height="100%" horizontalScrollPolicy="off"
+											 dataProvider="{pg.myData}" id="dg"
+											 headerHeight="40" sortExpertMode="true"
+											 itemClick="dg_itemClickHandler(event)"
+											 doubleClick="dgDoubleClick(event)" doubleClickEnabled="true"
+											 >
+							<mx:groupedColumns>
+								<mx:AdvancedDataGridColumnGroup headerText="Customer Infomation">
+									<mx:AdvancedDataGridColumn dataField="cusname" width="200" minWidth="120"/>
+									<mx:AdvancedDataGridColumn dataField="contactname"  width="200" minWidth="120"/>
+									<mx:AdvancedDataGridColumn dataField="email"  width="200" minWidth="120"/>
+									<mx:AdvancedDataGridColumn dataField="mobilephone"  width="120" minWidth="120"/>
+									<mx:AdvancedDataGridColumn dataField="telephone"  width="120" minWidth="120"/>
+								</mx:AdvancedDataGridColumnGroup>							
+
+								<mx:AdvancedDataGridColumnGroup headerText="Address" visible="{chkAdd.selected}">
+									<mx:AdvancedDataGridColumn dataField="address1"  width="200" minWidth="120"  visible="{chkAdd.selected}"/>
+									<mx:AdvancedDataGridColumn dataField="address2"  width="200" minWidth="120" visible="{chkAdd.selected}"/>
+									<mx:AdvancedDataGridColumn dataField="state"  width="120" minWidth="120" visible="{chkAdd.selected}"/>
+									<mx:AdvancedDataGridColumn dataField="country"  width="120" minWidth="120" visible="{chkAdd.selected}"/>
+									<mx:AdvancedDataGridColumn dataField="zipcode"  width="120" minWidth="120" visible="{chkAdd.selected}"/>
+								</mx:AdvancedDataGridColumnGroup>							
+
+									<mx:AdvancedDataGridColumnGroup headerText="Created By / Modifies By" visible="{chkMody.selected}">
+									<mx:AdvancedDataGridColumn dataField="createdby"  width="120" minWidth="120" visible="{chkMody.selected}"/>
+									<mx:AdvancedDataGridColumn dataField="createddate"  width="120" minWidth="120" visible="{chkMody.selected}"/>
+									<mx:AdvancedDataGridColumn dataField="modifyby"  width="120" minWidth="120" visible="{chkMody.selected}"/>
+									<mx:AdvancedDataGridColumn dataField="modifydate"  width="120" minWidth="120" visible="{chkMody.selected}"/>
+								</mx:AdvancedDataGridColumnGroup>							
+							</mx:groupedColumns>		
+						</mx:AdvancedDataGrid>
+					</mx:HBox>
+					<s:HGroup width="100%" height="40" verticalAlign="middle" gap="0">
+						<mx:Text text="Showing" />
+						<mx:Text text="{pg.start+1}" fontWeight="bold" />
+						<mx:Text text="to" />
+						<mx:Text text="{pg.end}" fontWeight="bold"  />
+						<mx:Text text="of" />
+						<mx:Text text="{pg.totalRow}"  fontWeight="bold" />
+						<mx:Text text="entries" />
+						<s:Spacer width="100%" />
+						<utils:Paging id="pg"  >
+						</utils:Paging>
+					</s:HGroup>
+				</mx:VBox>
+					</s:NavigatorContent>
+					<s:NavigatorContent width="100%" height="100%" label="">
+						<s:BorderContainer width="100%" height="100%" top="-10">
+							<s:Scroller width="100%" height="100%" horizontalScrollPolicy="off" verticalScrollPolicy="auto">
+							<s:Group width="100%" height="100%" >
+								
+								<s:Form width="500" height="100%"  minWidth="400"  >
+									<s:layout>
+										<s:FormLayout gap="-14"   />
+									</s:layout>
+									<s:FormItem label="CustomerName :" required="true">
+										<s:TextInput text="@{CustomerEvent.getInstance.voCustomer.cusname}" width="100%"/>
+									</s:FormItem>
+									<s:FormItem label="Contact Name :" required="true">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.contactname}"/>
+									</s:FormItem>
+									<s:FormItem label="Email :" required="true">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.email}"/>
+									</s:FormItem>
+									<s:FormItem label="Telephone :">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.telephone}"/>
+									</s:FormItem>
+									<s:FormItem label="Mobile phone :">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.mobilephone}"/>
+									</s:FormItem>
+									<s:FormItem />
+									<s:FormItem label="Address">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.address1}"/>
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.address2 }"/>
+									</s:FormItem>
+									<s:FormItem label="จังหวัด">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.state}"/>
+									</s:FormItem>
+									<s:FormItem label="ประเทศ">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.country}"/>
+									</s:FormItem>
+									<s:FormItem label="รหัสไปรษณีย์">
+										<s:TextInput width="50%" text="@{CustomerEvent.getInstance.voCustomer.zipcode}"/>
+									</s:FormItem>
+									<s:FormItem label="Created" visible="{chkMody.selected}">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.createdby}" editable="false"/>
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.createddate}" editable="false"/>
+									</s:FormItem>
+									<s:FormItem />
+									<s:FormItem label="Modifies" visible="{chkMody.selected}">
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.modifyby}" editable="false"/>
+										<s:TextInput width="100%" text="@{CustomerEvent.getInstance.voCustomer.modifydate}" editable="false"/>
+										
+									</s:FormItem>
+									
+								</s:Form>
+							</s:Group>	
+							</s:Scroller>
+						</s:BorderContainer>
+					</s:NavigatorContent>
+				</mx:ViewStack>
+			</s:Group>
+		</mx:Panel>
+		
+		
+		
+	</s:Group>
+	
+</main:IGroup>

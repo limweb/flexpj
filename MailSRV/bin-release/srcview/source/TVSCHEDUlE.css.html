@@ -1,0 +1,158 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>TVSCHEDUlE.css</title>
+<link rel="stylesheet" type="text/css" href="../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="CSSComment">/* CSS file */</span>
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">s </span><span class="CSSString">"library://ns.adobe.com/flex/spark"</span>;
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">mx </span><span class="CSSString">"library://ns.adobe.com/flex/mx"</span>;
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">local </span><span class="CSSString">"*"</span>;
+<span class="CSS@namespace">@namespace</span> <span class="CSSSelector">component </span><span class="CSSString">"th.co.tomato.themes.component.*"</span>;
+
+
+<span class="CSSComment">/* StyleableTextField, regular */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/tahoma.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSString">"MyFont"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">false</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* StyleableTextField, bold */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/tahomabd.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSString">"MyFont"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">false</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* Label, regular */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/Thonburi.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSString">"MyFontCFF"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* Label, bold */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"assets/font/ThonburiBold.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSString">"MyFontCFF"</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontWeight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">bold</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/* SYMBOL ICON FONT */</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"/assets/Font/Entypo-webfont.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Entypo</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span> 
+<span class="CSSDelimiters">}</span>
+<span class="CSS@font-face">@font-face</span> <span class="CSSDelimiters">{</span> 
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"/assets/Font/WebSymbols-Regular-webfont.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">WebSymbols</span><span class="CSSDelimiters">;</span> 
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span> 
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSS@font-face">@font-face</span>
+<span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">myiconfont</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">src</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">url(</span><span class="CSSString">"C:\Windows\Fonts\myiconfont.ttf"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">embedAsCFF</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">true</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+
+<span class="CSSSelector">global
+</span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyFontCFF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontSize</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">16</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">aaa</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FF0000</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">bbb</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#00FF00</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">.Call_Symbols </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">Entypo</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-weight</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">normal</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">font-size</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">35</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+    
+    <span class="CSSProperty_Name">paddingLeft</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">5</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*mx|AdvancedDataGrid {
+    fontFamily:MyFont;    
+    font-size: 12;
+    font-weight: normal;
+}*/</span>
+
+<span class="CSSSelector">.linkButtonStyles </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skin</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.component.linkbar.CustomLinkButtonSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">mx|Text,
+</span><span class="CSSComment">/*mx|DataGrid,
+mx|ComboBox,*/</span>
+<span class="CSSSelector">mx|DateField,
+mx|ToolTip,
+mx|LinkButton,
+mx|Label,
+mx|DateChooser
+</span><span class="CSSDelimiters">{</span>
+    
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyFont</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontSize</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">14</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSComment">/*
+mx|TabNavigator {
+    tabHeight: 39;
+    tabWidth: 150;
+    cornerRadius: 0;
+    horizontalGap: 1;
+    tabOffset: 0;
+    textIndent: 0;
+    backgroundAlpha: 1;
+    fontFamily: MyFont;
+    fontSize:14;
+
+}*/</span>
+
+
+
+<span class="CSSComment">/*mx|DateField {
+    fontFamily: MyFont;
+    fontSize:14;
+}*/</span>
+
+<span class="CSSComment">/*component|SM_TimeEntry {
+    fontFamily: MyFont;
+    fontSize:14;
+}*/</span>
+
+
+<span class="CSSSelector">s|TitleWindow #titleDisplay </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#FFFFFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+<span class="CSSSelector">s|TextInput </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">color</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#000000</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyFontCFF</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">s|Button </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">skinClass</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">ClassReference(</span><span class="CSSString">"th.co.tomato.themes.component.flatbuttonSkin.FlatBtnSkin"</span><span class="CSSProperty_Value">)</span><span class="CSSDelimiters">;</span>
+<span class="CSSComment">/*    skinClass:ClassReference("th.co.tomato.themes.skins.ButtonSKin");*/</span>
+<span class="CSSDelimiters">}</span>
+
+<span class="CSSSelector">mx|Alert </span><span class="CSSDelimiters">{</span>
+    <span class="CSSProperty_Name">fontFamily</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">MyFont</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">fontSize</span><span class="CSSDelimiters">:</span><span class="CSSProperty_Value">14</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">backgroundAlpha</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">1</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">backgroundColor</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#70CAE9</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderAlpha</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">0.6</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">borderColor</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">#30A7CF</span><span class="CSSDelimiters">;</span>
+    <span class="CSSProperty_Name">dropShadowEnabled</span><span class="CSSDelimiters">:</span> <span class="CSSProperty_Value">false</span><span class="CSSDelimiters">;</span>
+<span class="CSSDelimiters">}</span></pre></body>
+</html>
