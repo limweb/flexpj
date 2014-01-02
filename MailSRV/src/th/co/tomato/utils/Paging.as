@@ -43,6 +43,7 @@ package th.co.tomato.utils
 		
 		[Bindable] public var start:int = 0;
 		[Bindable] public var end:int = 0;
+		[Bindable] public var pageend:int = 0;
 		
 		// ค่า  Enable or Disable ของ ปุ่มทั้ง 4
 		[Bindable] private var disableFirst:Boolean = false;
@@ -70,7 +71,8 @@ package th.co.tomato.utils
 			_rowPerPage = value;
 			
 			startPaging();
-			commitProperties();
+//			commitProperties();
+			invalidateProperties();
 		}
 
 		override protected function commitProperties():void
@@ -78,7 +80,9 @@ package th.co.tomato.utils
 			super.commitProperties();
 			trace("commitProperity");
 			if(end > totalRow ){
-				end = totalRow;
+				pageend = totalRow;
+			} else {
+				pageend = end;
 			}
 			txt.text = txtPage;
 			chkEnable();
@@ -150,7 +154,7 @@ package th.co.tomato.utils
 			trace("measure");
 		}
 		
-		
+		[Bindable]
 		public function get txtPage():String
 		{
 			return "Page "+ currentPage +" of "+ totalPage +" Total item: "+ totalRow ;
@@ -159,7 +163,8 @@ package th.co.tomato.utils
 		public function set txtPage(value:String):void
 		{
 			_txtPage = value;
-			commitProperties();
+//			commitProperties();
+			invalidateProperties();
 			invalidateDisplayList();
 		}
 
@@ -180,6 +185,7 @@ package th.co.tomato.utils
 		}
 		
 		public function initPaging( dataTemp:ArrayCollection ):void {
+			trace('inipage');
 			start = 0;
 			totalRow = dataTemp.length;
 			totalPage = Math.ceil( totalRow / rowPerPage );
@@ -192,7 +198,8 @@ package th.co.tomato.utils
 
 			addItems( dataTemp );
 			txt.text = txtPage;
-			commitProperties();
+//			commitProperties();
+			invalidateProperties();
 			
 		}
 		
@@ -200,7 +207,9 @@ package th.co.tomato.utils
 			
 //			myData.removeAll();
 			myData = new ArrayCollection();
+			trace(arr.length);
 			for ( var i:int = start; i < end; i++ ) {
+				trace(i);
 				if ( i != arr.length ) {
 					myData.addItem( arr[i] );
 				} else {
@@ -227,8 +236,10 @@ package th.co.tomato.utils
 			start = 0;
 			end = rowPerPage;
 			chkEnable();
+			trace('firstpage');
 			addItems(dataTemp);
-			commitProperties();
+//			commitProperties();
+			invalidateProperties();
 		}
 		
 		public function backPage(e:MouseEvent ):void {
@@ -236,8 +247,10 @@ package th.co.tomato.utils
 			start = start - rowPerPage;
 			end = end - rowPerPage;
 			chkEnable();
+			trace("backpage");
 			addItems( dataTemp );
-			commitProperties();
+//			commitProperties();
+			invalidateProperties();
 		}
 		
 		public function nextPage(e:MouseEvent ):void {
@@ -245,8 +258,10 @@ package th.co.tomato.utils
 			start = end;
 			end = end + rowPerPage;
 			chkEnable();
+			trace('nextpage');
 			addItems( dataTemp );
-			commitProperties();
+//			commitProperties();
+			invalidateProperties();
 		}
 		
 		public function lastPage(e:MouseEvent ):void {
@@ -254,14 +269,17 @@ package th.co.tomato.utils
 			start = ( totalPage * rowPerPage ) - rowPerPage;
 			end = ( totalPage * rowPerPage );
 			chkEnable();
+			trace('lastpage');
 			addItems( dataTemp );
-			commitProperties();
+//			commitProperties();
+			invalidateProperties();
 		}
 		
 		// ไม่ได้ใช้
 		public function currPage(e:MouseEvent ):void {
 			start = ( ( currentPage - 1 ) * rowPerPage ) + 1;
 			end = currentPage * rowPerPage;
+			trace('currenctpage');
 			addItems( dataTemp );
 		}
 

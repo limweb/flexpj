@@ -16,6 +16,7 @@
 			   xmlns:ColorBtn="th.co.tomato.themes.component.ColorBtn.*" 
 			   xmlns:avartarBtn="th.co.tomato.themes.component.avartarBtn.*" 
 			   width="100%" height="100%"  minHeight="400"
+			   resize="group1_resizeHandler(event)"
 			   >
 	<s:layout>
 		<s:VerticalLayout gap="0" />
@@ -131,6 +132,15 @@
 			private function MenuSelect():void {
 				MenuConfig.getInstance.MainMenu = mnuLeft.selectedItem.text1 as String; 
 				mnuLeft.validateDisplayList();
+			}
+			
+			protected function group1_resizeHandler(event:ResizeEvent):void
+			{
+				spLeft.width = 200;
+				MenuGroup.width = 200;
+				spLeft1.width = 200;
+				trace('200');
+				validateNow();
 			}
 			
 		]]>
@@ -251,27 +261,37 @@
 		<avartarBtn:AvartarBtn id="customcomponent11" height="50" />
 	</s:HGroup>
 	</s:Group>
-	<s:Group width="100%" height="100%">
+	<mx:Canvas width="100%" height="100%">
 		
-	<s:HGroup width="100%" height="100%" id="MiddleGroup" x="0"  gap="10">
-		<s:Spacer id="spLeft" width="200" />
+	<mx:HBox width="100%" height="100%" id="MiddleGroup" x="0"  horizontalGap="10" 
+			 horizontalScrollPolicy="off" verticalScrollPolicy="off"
+			 >
+		<mx:Canvas id="spLeft" width="200" >
+			<mx:HBox width="200" />
+		</mx:Canvas>
 		<s:Group id="MainGroup" width="100%" height="100%" moveEffect="mv" y="0" x="0">
 			<s:layout>
 				<s:VerticalLayout paddingLeft="5" paddingRight="30" paddingTop="5" paddingBottom="5" />
 			</s:layout>
 			<sampleview:Tview  width="100%" height="100%" />
 		</s:Group>
-	</s:HGroup>
+	</mx:HBox>
 		
 		
-	<s:HGroup id="grpMenu" width="100%" height="100%" gap="10">
-		<s:Group width="200" height="100%" id="MenuGroup"  moveEffect="mv1">
+	<mx:HBox id="grpMenu" width="100%" height="100%" horizontalGap="10" 
+			horizontalScrollPolicy="off" verticalScrollPolicy="off" >
+		<mx:Canvas width="200" height="100%" id="MenuGroup"  moveEffect="mv1">
+		<mx:Canvas id="spLeft1" width="200" >
+			<s:Image source="assets/width200.png" />
+		</mx:Canvas>
+		<s:Group  width="200" height="100%">
 		<s:Rect width="100%" height="100%"  >
 			<s:fill>
 				<s:SolidColor color="{FlatTheme.disableColor}" />
 			</s:fill>
 		</s:Rect>
-		<s:VGroup width="100%" height="100%" gap="0" paddingTop="5" horizontalAlign="center" id="menuItemGroup" x="0"  
+		</s:Group>
+		<s:VGroup width="200%" height="100%" gap="0" paddingTop="5" horizontalAlign="center" id="menuItemGroup" x="0"  
 				  includeInLayout="{FlatTheme.menuIncludeinlayout}" >
 			<searchtextinput:SearchTextinput prompt="Search hear..." includeInLayout="{FlatTheme.menuIncludeinlayout}" 
 											 skinClass="th.co.tomato.themes.component.searchtextinput.SearchTextInputSkin" />
@@ -312,9 +332,9 @@
 				</s:ArrayCollection>
 			</s:List>
 			</s:VGroup>
-		</s:Group>
+		</mx:Canvas>
 
-	</s:HGroup>
+	</mx:HBox>
 	<s:Group id="grpRight" y="0" right="0" width="200" height="100%">
 		<s:Group width="200"  right="-180" top="0" bottom="0"   moveEffect="mv2"  id="rightBox"  click="rightBoxclickHandler(event)">
 			<s:Rect right="0" top="0" left="0" bottom="0" >
@@ -327,16 +347,10 @@
 			</s:Rect>
 		</s:Group>
 		<s:VGroup width="180" height="100%" moveEffect="mv2" right="-180" top="0" id="rightContainer">
-			<s:Button label="test" />
-			<s:CheckBox label="CheckBox"/>
-			<mx:ColorPicker/>
-			<s:ComboBox/>
-			<mx:DateChooser/>
-			<mx:DateField/>
-			<s:DropDownList></s:DropDownList>
+			
 		</s:VGroup>
 	</s:Group>
-</s:Group>	
+</mx:Canvas>	
 	<s:Group width="100%" height="30" >
 		<s:Rect width="100%" height="100%">
 			<s:fill>
